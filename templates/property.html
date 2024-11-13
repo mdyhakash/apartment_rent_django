@@ -23,7 +23,7 @@
           <a href="{% url 'propertydetails' p.id %}">
             <div class="bg-cover bg-center h-56 p-4 relative">
               <img
-                src="{{ p.image.url }}"
+                src="{{ p.image_1.url }}"
                 alt="Property Image"
                 class="w-full h-full object-cover"
               />
@@ -58,7 +58,7 @@
                   ></path>
                 </svg>
                 <p>
-                  <span class="font-bold">{{ p.bedrooms }}</span>
+                  <span class="font-bold">{{ p.num_of_rooms }}</span>
                   Bedrooms
                 </p>
               </div>
@@ -74,24 +74,33 @@
                   ></path>
                 </svg>
                 <p>
-                  <span class="font-bold">{{ p.bathrooms }}</span>
+                  <span class="font-bold">{{ p.num_of_bathrooms }}</span>
                   Bathrooms
                 </p>
               </div>
             </div>
-            <div class="flex justify-center mt-4">
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-4 ">
               <a
                 href="{% url "propertydetails" p.id%}"
-                class="inline-block bg-gray-900 text-white px-28 py-2 rounded-lg font-semibold hover:bg-gray-700 transition duration-300"
+                class="bg-gray-900 text-white text-center px-6 py-2 rounded-lg font-semibold hover:bg-gray-700 transition duration-300"
                 >View Details</a
               >
               <a
-          href="{% url 'update_property' p.id %}"
-          class="mt-8 bg-transparent text-white text-base font-semibold py-2.5 px-6 border-2 border-white rounded hover:bg-white hover:text-black transition duration-300 ease-in-out"
+            href="{% url 'update_property' p.id %}"
+            class="bg-blue-500 text-white text-center px-6 py-2 rounded-lg font-semibold hover:bg-gray-700 transition duration-300"
+          >
+           Update Property
+          </a>
+             
+          <a
+          href="{% url 'delete_property' p.id %}"
+          class="bg-red-500 text-white text-center px-6 py-2 rounded-lg font-semibold hover:bg-gray-700 transition duration-300"
         >
-         Update property
+         Delete Property
         </a>
             </div>
+            
+            
           </div>
         </div>
         

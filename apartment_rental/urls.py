@@ -7,8 +7,8 @@ from rental import views as prop_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', prop_views.home, name="home"),
-   # path('login/', prop_views.login, name='login'),
-   # path('signup/', prop_views.signup, name='signup'),
+   path('login/', prop_views.login, name='login'),
+   path('register/', prop_views.register, name='register'),
     path('property/', prop_views.property, name='property'),
     path('add_property/', prop_views.add_property, name='add_property'),
     path('update_property/<str:id>',prop_views.update_property,name='update_property'),
