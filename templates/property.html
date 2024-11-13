@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Explore Apartments</title>
+    <title>Explore Properties</title>
   </head>
   <body>
     {% block content %}
@@ -18,13 +18,13 @@
 
     <div class="max-w-6xl mx-auto mt-12">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for apartment in apartments %}
+        {% for p in property %}
         <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-          <a href="{% url 'apartment_detail' apartment.id %}">
+          <a href="{% url 'propertydetails' p.id %}">
             <div class="bg-cover bg-center h-56 p-4 relative">
               <img
-                src="{{ apartment.image.url }}"
-                alt="Apartment Image"
+                src="{{ p.image.url }}"
+                alt="Property Image"
                 class="w-full h-full object-cover"
               />
               <div class="absolute top-4 right-4">
@@ -42,10 +42,10 @@
           </a>
           <div class="p-4">
             <p class="uppercase tracking-wide text-sm font-bold text-gray-700">
-              {{ apartment.name }}
+              {{ p.name }}
             </p>
-            <p class="text-3xl text-gray-900">{{ apartment.price }} lac</p>
-            <p class="text-gray-700">{{ apartment.city }}</p>
+            <p class="text-3xl text-gray-900">{{ p.price }} lac</p>
+            <p class="text-gray-700">{{ p.city }}</p>
             <div class="flex justify-between mt-4 text-gray-600">
               <div class="flex items-center">
                 <svg
@@ -58,7 +58,7 @@
                   ></path>
                 </svg>
                 <p>
-                  <span class="font-bold">{{ apartment.bedrooms }}</span>
+                  <span class="font-bold">{{ p.bedrooms }}</span>
                   Bedrooms
                 </p>
               </div>
@@ -74,20 +74,27 @@
                   ></path>
                 </svg>
                 <p>
-                  <span class="font-bold">{{ apartment.bathrooms }}</span>
+                  <span class="font-bold">{{ p.bathrooms }}</span>
                   Bathrooms
                 </p>
               </div>
             </div>
             <div class="flex justify-center mt-4">
               <a
-                href="#"
+                href="{% url "propertydetails" p.id%}"
                 class="inline-block bg-gray-900 text-white px-28 py-2 rounded-lg font-semibold hover:bg-gray-700 transition duration-300"
                 >View Details</a
               >
+              <a
+          href="{% url 'update_property' p.id %}"
+          class="mt-8 bg-transparent text-white text-base font-semibold py-2.5 px-6 border-2 border-white rounded hover:bg-white hover:text-black transition duration-300 ease-in-out"
+        >
+         Update property
+        </a>
             </div>
           </div>
         </div>
+        
         {% endfor %}
       </div>
     </div>
@@ -111,11 +118,12 @@
           Anticipated trends in 2024!!!!!
         </p>
         <a
-          href="#"
+          href="{% url 'add_property' %}"
           class="mt-8 bg-transparent text-white text-base font-semibold py-2.5 px-6 border-2 border-white rounded hover:bg-white hover:text-black transition duration-300 ease-in-out"
         >
          Add property
         </a>
+        
       </div>
     </div>
 
