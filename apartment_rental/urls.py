@@ -9,6 +9,6 @@ urlpatterns = [
     path('', prop_views.home, name="home"),
    # path('login/', prop_views.login, name='login'),
    # path('signup/', prop_views.signup, name='signup'),
-    path('apartment/', prop_views.apartment, name='apartment'),
+    path('property/', prop_views.property, name='property'),
     path('propertydetails/<str:p_id>',prop_views.propertydetails,name='propertydetails')
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

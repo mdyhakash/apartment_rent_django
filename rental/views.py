@@ -4,12 +4,12 @@ from .models import *
 # Create your views here.
 def home(request):
     return render(request, template_name="home.html")
-def apartment(request):
-    apartment=Property.objects.all()
+def property(request):
+    property=Property.objects.all()
     context={
-         'apartment':apartment
+         'property':property
      }
-    return render(request, template_name="apartment.html",context=context)
+    return render(request, template_name="property.html",context=context)
 def propertydetails(request,id):
      propertys=Property.objects.get(pk=id)
      context={
