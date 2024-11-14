@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="{% url 'add_user'%}">add user</a>
+    <br>
+
+    {% for i in user %}
+      {{ i.username }}
+      <br>
+      {{ i.password }}
+      <br>
+      <img src=" {{ i.profile_image.url }}" alt="hasib" width="400">
+
+    <br>
+     <a href="{% url 'update_user' i.id %}">update</a>
+    <br>
+    <a href="{% url 'delete_user' i.id %}">delete</a>
+    <br>
+     
+
+
+
+    {% endfor%}
+
+    
+</body>
+</html>

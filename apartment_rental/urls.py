@@ -15,4 +15,11 @@ urlpatterns = [
     path('update_property/<str:id>',prop_views.update_property,name='update_property'),
     path('delete_property/<str:id>',prop_views.delete_property,name='delete_property'),
     path('propertydetails/<str:id>',prop_views.propertydetails,name='propertydetails'),
+
+    # user
+
+    path('add_user/',prop_views.add_user,name='add_user'),
+    path('user/',prop_views.user,name='user'),
+    path('update_user/<str:id>',prop_views.update_user,name='update_user'),
+    path('delete_user/<str:id>',prop_views.delete_user,name='delete_user'),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

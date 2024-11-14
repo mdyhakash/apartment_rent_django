@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from .models import *
-from .forms import PropertyForm
+from .forms import *
 # Create your views here.
 def home(request):
     return render(request, template_name="home.html")
@@ -42,3 +42,36 @@ def update_property(request, id):
 def delete_property(request, id):
     Property.objects.get(pk=id).delete()
     return redirect('property')
+
+
+#user
+
+def user(request):
+    user=User.objects.all()
+    return render(request,template_name='user/user.html',context={'user':user,})
+
+def add_user(request):
+    form = UserForm()
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('user')
+    return render(request, template_name='user/user_forms.html', context = {'form':form,})
+
+
+def update_user(request,id):
+    user=User.objects.get(pk=id)
+    form = UserForm(instance=user)
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES,instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user')
+    return render(request, template_name='user/user_forms.html', context = {'form':form,})
+
+def delete_user(request,id):
+    User.objects.get(pk=id).delete()
+    return redirect('user')
+
+
