@@ -8,8 +8,8 @@ from my_auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', prop_views.home, name="home"),
-    path('login/', auth_views.login, name='login'),
-    path('register/', auth_views.register, name='register'),
+    path('login/', prop_views.login, name='login'),
+    path('register/', prop_views.register, name='register'),
     path('property/', prop_views.property, name='property'),
     path('add_property/', prop_views.add_property, name='add_property'),
     path('update_property/<str:id>',prop_views.update_property,name='update_property'),
