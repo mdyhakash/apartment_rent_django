@@ -49,7 +49,7 @@ def delete_property(request, id):
 #user
 
 def user(request):
-    user=User.objects.all()
+    user=User_Profile.objects.all()
     return render(request,template_name='user/user.html',context={'user':user,})
 
 def add_user(request):
@@ -63,7 +63,7 @@ def add_user(request):
 
 
 def update_user(request,id):
-    user=User.objects.get(pk=id)
+    user=User_Profile.objects.get(pk=id)
     form = UserForm(instance=user)
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES,instance=user)
@@ -73,7 +73,7 @@ def update_user(request,id):
     return render(request, template_name='user/user_forms.html', context = {'form':form,})
 
 def delete_user(request,id):
-    User.objects.get(pk=id).delete()
+    User_Profile.objects.get(pk=id).delete()
     return redirect('user')
 
 def book_property(request, id):
@@ -97,26 +97,14 @@ def book_property(request, id):
         return redirect('booking_success')  
     else:
        
-        apartment = Property.objects.get(pk=id)
+        property = Property.objects.get(pk=id)
         return render(request, 'booking.html', {'property': property})
 
 def booking_success(request):
     return render(request, 'booking_success.html')
 
 def profile(request):
-    user_profile, created = User.objects.get_or_create(user=request.user)
+   user_profile=User_Profile.objects.all()
 
-    if request.method == 'POST':
-        phone = request.POST.get('phone')
-        profile_image = request.FILES.get('image')
-
-        # Update profile fields
-        user_profile.phone = phone
-        if profile_image:
-            user_profile.profile_image = profile_image
-
-        user_profile.save()
-        messages.success(request, 'Profile updated successfully')
-
-    return render(request, 'profile.html', {'user_profile': user_profile})
+   return render(request,template_name='profile.html',context={'user_profile':user_profile,})
 
