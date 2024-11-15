@@ -2,6 +2,7 @@ from datetime import timezone
 from django.shortcuts import render,redirect,HttpResponse
 from .models import *
 from .forms import *
+from django.contrib import messages
 # Create your views here.
 def home(request):
     return render(request, template_name="home.html")
@@ -101,3 +102,21 @@ def book_property(request, id):
 
 def booking_success(request):
     return render(request, 'booking_success.html')
+
+def profile(request):
+    user_profile, created = User.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        phone = request.POST.get('phone')
+        profile_image = request.FILES.get('image')
+
+        # Update profile fields
+        user_profile.phone = phone
+        if profile_image:
+            user_profile.profile_image = profile_image
+
+        user_profile.save()
+        messages.success(request, 'Profile updated successfully')
+
+    return render(request, 'profile.html', {'user_profile': user_profile})
+

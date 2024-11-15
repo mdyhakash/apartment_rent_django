@@ -7,5 +7,5 @@ class PropertyForm(ModelForm):
 
 class UserForm(ModelForm):
     class Meta:
-        model=User
+        model=User_Profile
         fields='__all__'

@@ -1,13 +1,15 @@
 from django.db import models
 
 
-class User(models.Model):
+class User_Profile(models.Model):
     username = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=128)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15, null=True, blank=True)
     user_type = models.CharField(max_length=50)
     join_date=models.DateField()
+    address=models.TextField(max_length=200, blank=True, null=True)
+
     profile_image = models.ImageField(upload_to='profiles/', null=True, blank=True)
 
     def __str__(self):
@@ -35,7 +37,10 @@ class Property(models.Model):
         return self.property_type
 
 class Booking(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User_Profile, on_delete=models.CASCADE)
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
     booking_date = models.DateTimeField()
     date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.user)
