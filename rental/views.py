@@ -1,3 +1,4 @@
+from datetime import timezone
 from django.shortcuts import render,redirect,HttpResponse
 from .models import *
 from .forms import *
@@ -74,4 +75,29 @@ def delete_user(request,id):
     User.objects.get(pk=id).delete()
     return redirect('user')
 
+def book_property(request, id):
+    if request.method == 'POST':
+        user = request.user
+        property = Property.objects.get(pk=id)
+        booking_date = timezone.now()
+        date_created = timezone.now()
+       
+       
+        booking = Booking.objects.create(
+            user=user,
+            property=property,
+            booking_date=booking_date,
+            date_created = date_created,
+        )
+       
+        booking.save()
+        property.delete()
 
+        return redirect('booking_success')  
+    else:
+       
+        apartment = Property.objects.get(pk=id)
+        return render(request, 'booking.html', {'property': property})
+
+def booking_success(request):
+    return render(request, 'booking_success.html')
