@@ -150,10 +150,10 @@ def book_property(request, id):
     else:
        
         property = Property.objects.get(pk=id)
-        return render(request, 'booking.html', {'property': property})
+        return render(request, template_name='book_property/booking.html', context={'property': property})
 
 def booking_success(request):
-    return render(request, 'booking_success.html')
+    return render(request, 'book_property/booking_success.html')
 
 def profile(request):
    user_profile=User_Profile.objects.all()

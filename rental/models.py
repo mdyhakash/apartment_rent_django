@@ -9,7 +9,6 @@ class User_Profile(models.Model):
     user_type = models.CharField(max_length=50)
     join_date=models.DateField()
     address=models.TextField(max_length=200, blank=True, null=True)
-
     profile_image = models.ImageField(upload_to='profiles/', null=True, blank=True)
 
     def __str__(self):
@@ -23,6 +22,7 @@ class Property(models.Model):
     num_of_bathrooms = models.IntegerField()
     area_size = models.FloatField()
     price = models.FloatField()
+    address=models.TextField(max_length=200, blank=True, null=True)
     status = models.CharField(max_length=50)
     date_created = models.DateTimeField(auto_now_add=True)
     image_1 = models.ImageField(upload_to='property_images/', null=True, blank=True)
@@ -35,7 +35,7 @@ class Property(models.Model):
      
     def __str__(self):
         return self.property_type
-
+address=models.TextField(max_length=200, blank=True, null=True)
 class Booking(models.Model):
     user = models.ForeignKey(User_Profile, on_delete=models.CASCADE)
     property = models.ForeignKey(Property, on_delete=models.CASCADE)

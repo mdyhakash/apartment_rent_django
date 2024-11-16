@@ -10,6 +10,7 @@ urlpatterns = [
     path('', prop_views.home, name="home"),
     path('login/', prop_views.login, name='login'),
     path('register/', prop_views.register, name='register'),
+    path('signout/',prop_views.signout,name='signout'),
     path('property/', prop_views.property, name='property'),
     path('add_property/', prop_views.add_property, name='add_property'),
     path('update_property/<str:id>',prop_views.update_property,name='update_property'),
