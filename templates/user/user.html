@@ -14,7 +14,12 @@
       <br>
       {{ i.password }}
       <br>
-      <img src=" {{ i.profile_image.url }}" alt="hasib" width="400">
+      {% if i.profile_image %}
+    <img src="{{ i.profile_image.url }}" alt="hasib" width="400">
+     {% else %}
+    <p>No profile image available.</p>
+     {% endif %}
+
 
     <br>
      <a href="{% url 'update_user' i.id %}">update</a>

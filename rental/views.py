@@ -1,11 +1,13 @@
 from django.utils import timezone
-from django.shortcuts import render,redirect,HttpResponse
+from django.shortcuts import render,redirect,HttpResponse,get_object_or_404
 from .models import *
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required
+from django.utils.timezone import now
+from datetime import date
 # Create your views here.
 def home(request):
     return render(request, template_name="home.html")
@@ -17,24 +19,36 @@ def register(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
 
-        
+        # Check if the username or email already exists
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Username already taken.')
+            return redirect('register')
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'Email already taken.')
+            return redirect('register')
+
+        # Create user in the User model
         user = User.objects.create_user(username=username, email=email, password=password)
+        user.save()
 
-      
-        request.session['signup_username'] = username
-        request.session['signup_email'] = email
-        request.session['signup_password'] = password
+        # Create an associated User_Profile entry
+        User_Profile.objects.create(
+            username=username,
+            email=email,
+            password=user.password,  # User password is hashed; use as-is
+            user_type='User',        # Default user type
+            join_date=date.today(),
+        )
 
-        
+        # Authenticate and log in the user
         user = authenticate(request, username=username, password=password)
-        
         if user is not None:
-           
             auth_login(request, user)
             messages.success(request, 'You have successfully signed up!')
-            return redirect('login')  
+            return redirect('home')  # Redirect to a home page or dashboard
 
     return render(request, 'register.html')
+
 
 def login(request):
     if request.method == 'POST':
@@ -129,28 +143,26 @@ def delete_user(request,id):
     return redirect('user')
 
 def book_property(request, id):
-    if request.method == 'POST':
-        user = request.user
-        property = Property.objects.get(pk=id)
-        booking_date = timezone.now()
-        date_created = timezone.now()
-       
-       
-        booking = Booking.objects.create(
-            user=user,
-            property=property,
-            booking_date=booking_date,
-            date_created = date_created,
-        )
-       
-        booking.save()
-        property.delete()
+    # Fetch the property using the provided 'id'
+    property_obj = get_object_or_404(Property, id=id)
 
-        return redirect('booking_success')  
-    else:
-       
-        property = Property.objects.get(pk=id)
-        return render(request, template_name='book_property/booking.html', context={'property': property})
+    # Retrieve the User_Profile instance for the current user
+    try:
+        user_profile = User_Profile.objects.get(username=request.user.username)
+    except User_Profile.DoesNotExist:
+        messages.error(request, "User profile not found. Please contact support.")
+        return redirect('home')
+
+    # Create the booking
+    booking = Booking.objects.create(
+        user=user_profile,
+        property=property_obj,
+        booking_date=now(),
+    )
+    booking.save()
+
+    messages.success(request, "Property booked successfully!")
+    return redirect('home')
 
 def booking_success(request):
     return render(request, 'book_property/booking_success.html')
