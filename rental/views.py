@@ -36,7 +36,7 @@ def register(request):
             username=username,
             email=email,
             password=user.password,  # User password is hashed; use as-is
-            user_type='User',        # Default user type
+                  # Default user type
             join_date=date.today(),
         )
 
@@ -129,7 +129,7 @@ def add_user(request):
 
 
 def update_user(request,id):
-    user=User.objects.get(pk=id)
+    user=User_Profile.objects.get(pk=id)
     form = UserForm(instance=user)
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES,instance=user)

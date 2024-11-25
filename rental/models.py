@@ -6,7 +6,6 @@ class User_Profile(models.Model):
     password = models.CharField(max_length=128)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15, null=True, blank=True)
-    
     join_date=models.DateField(auto_now=True)
     address=models.TextField(max_length=200, blank=True, null=True)
     profile_image = models.ImageField(upload_to='profiles/', null=True, blank=True,default='profiles/default_profile.png')

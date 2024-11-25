@@ -17,19 +17,13 @@
           class="flex justify-center items-center bg-white shadow-xl rounded-lg overflow-hidden"
         >
           <div class="relative w-64 h-64 rounded-full overflow-hidden">
-            {% if User_Profile.profile_image %}
+           
             <img
               src="{{ user_profile.profile_image.url }}"
               alt="Profile Image"
               class="w-full h-full object-cover"
             />
-            {% else %}
-            <img
-              src="#"
-              alt="Default Image"
-              class="w-full h-full object-cover"
-            />
-            {% endif %}
+            
           </div>
         </div>
 
@@ -88,7 +82,7 @@
                 </p>
               </div>
               <a
-                href="{% url 'update_user' user.id %}"
+                href="{% url 'update_user' user_profile.id %}"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >Update Profile</a
               >
