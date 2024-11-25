@@ -19,13 +19,13 @@
           <div class="relative w-64 h-64 rounded-full overflow-hidden">
             {% if User_Profile.profile_image %}
             <img
-              src="{{ user.profile_image.url }}"
+              src="{{ user_profile.profile_image.url }}"
               alt="Profile Image"
               class="w-full h-full object-cover"
             />
             {% else %}
             <img
-              src="../media/Default Image.png"
+              src="#"
               alt="Default Image"
               class="w-full h-full object-cover"
             />
@@ -37,23 +37,23 @@
         <div class="bg-white shadow-xl rounded-lg overflow-hidden">
           <div class="p-4">
             <p class="uppercase tracking-wide text-sm font-bold text-gray-700">
-              {{ user.username }}
+              {{ user_profile.username }}
             </p>
-            <p class="text-gray-700">{{ user.email }}</p>
+            <p class="text-gray-700">{{ user_profile.email }}</p>
             <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
               <div class="mb-4">
                 <label
                   for="phone"
                   class="block text-gray-700 text-sm font-bold mb-2"
-                  >Phone Number: {{ User_Profile.phone }}</label
+                  >Phone Number: {{ user_profile.phone }}</label
                 >
                 <input
                   type="text"
                   name="phone"
                   id="phone"
                   class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  value="{{ user.phone }}"
+                  value="{{ user_profile.phone }}"
                 />
               </div>
               <div class="mb-4">
@@ -68,7 +68,7 @@
                   rows="4"
                   class="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 >
-{{ user.address }}</textarea
+{{ user_profile.address }}</textarea
                 >
               </div>
               <div class="mb-4">

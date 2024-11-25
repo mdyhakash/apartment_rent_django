@@ -18,7 +18,7 @@ urlpatterns = [
     path('propertydetails/<str:id>',prop_views.propertydetails,name='propertydetails'),
     path('book_property/<str:id>', prop_views.book_property, name='book_property'),
     path('booking_success/<str:id>', prop_views.booking_success, name='booking_success'),
-    path('profile/<str:id>', prop_views.profile, name='profile'),
+    path('profile/<str:username>', prop_views.profile, name='profile'),
     # user
 
     path('add_user/',prop_views.add_user,name='add_user'),

@@ -135,13 +135,13 @@ def update_user(request,id):
         form = UserForm(request.POST, request.FILES,instance=user)
         if form.is_valid():
             form.save()
-            return redirect('profile' ,user.id)
+            return redirect('profile',user.username)
     return render(request, template_name='user/user_forms.html', context = {'form':form,})
 
 def delete_user(request,id):
     User_Profile.objects.get(pk=id).delete()
     return redirect('user')
-
+@login_required
 def book_property(request, id):
     # Fetch the property using the provided 'id'
     property_obj = get_object_or_404(Property, id=id)
@@ -171,8 +171,7 @@ def booking_success(request,id):
      }
     return render(request, 'book_property/booking_success.html',context=context)
 
-def profile(request,id):
-   user = User.objects.get(pk=id)
-
-   return render(request,template_name='profile.html',context={'user':user,})
-
+@login_required
+def profile(request, username):
+    user_profile = get_object_or_404(User_Profile, username=username)
+    return render(request, 'profile.html', {'user_profile': user_profile})
