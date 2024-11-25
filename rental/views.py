@@ -135,7 +135,7 @@ def update_user(request,id):
         form = UserForm(request.POST, request.FILES,instance=user)
         if form.is_valid():
             form.save()
-            return redirect('user')
+            return redirect('profile' ,user.id)
     return render(request, template_name='user/user_forms.html', context = {'form':form,})
 
 def delete_user(request,id):
