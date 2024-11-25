@@ -27,11 +27,13 @@
 
         <div class="flex ml-auto lg:order-1">
           {% if user.is_authenticated %}
-            
+
           <span class="px-4 py-2 text-md rounded-lg font-semibold text-black">
-            Welcome, <a href="{% url 'profile' %}" class="text-blue-800">{{ user.username }}</a>
+            Welcome,
+            <a href="{% url 'profile' user.id %}" class="text-blue-800"
+              >{{ user.username }}</a
+            >
           </span>
-           
 
           <a
             href="{% url 'signout' %}"
@@ -82,7 +84,7 @@
             <a
               href="{% url 'user' %}"
               class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
-              >User</a
+              >Users</a
             >
           </li>
         </ul>

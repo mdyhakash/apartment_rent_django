@@ -129,7 +129,7 @@ def add_user(request):
 
 
 def update_user(request,id):
-    user=User_Profile.objects.get(pk=id)
+    user=User.objects.get(pk=id)
     form = UserForm(instance=user)
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES,instance=user)
@@ -164,11 +164,15 @@ def book_property(request, id):
     messages.success(request, "Property booked successfully!")
     return redirect('home')
 
-def booking_success(request):
-    return render(request, 'book_property/booking_success.html')
+def booking_success(request,id):
+    book_property=Property.objects.get(pk=id)
+    context={
+         'book_property':book_property,
+     }
+    return render(request, 'book_property/booking_success.html',context=context)
 
-def profile(request):
-   user_profile=User_Profile.objects.all()
+def profile(request,id):
+   user = User.objects.get(pk=id)
 
-   return render(request,template_name='profile.html',context={'user_profile':user_profile,})
+   return render(request,template_name='profile.html',context={'user':user,})
 
