@@ -80,7 +80,7 @@ def propertydetails(request, id):
     context = {'property': property}
     return render(request, template_name="propertydetails.html", context=context)
 
-@login_required
+@login_required(login_url='register')
 def add_property(request):
     form = PropertyForm()
     if request.method == 'POST':
@@ -90,7 +90,7 @@ def add_property(request):
             return redirect('property')
     return render(request, template_name='add_property.html', context={'form': form})
 
-@login_required
+@login_required(login_url='register')
 def update_property(request, id):
     property = Property.objects.get(pk=id)
     form = PropertyForm(instance=property)
@@ -101,7 +101,7 @@ def update_property(request, id):
             return redirect('property')
     return render(request, template_name='add_property.html', context={'form': form})
 
-@login_required
+@login_required(login_url='register')
 def delete_property(request, id):
     Property.objects.get(pk=id).delete()
     return redirect('property')
@@ -138,26 +138,42 @@ def delete_user(request, id):
     User_Profile.objects.get(pk=id).delete()
     return redirect('user')
 
-@login_required
+@login_required(login_url='register')
 def book_property(request, id):
+    # Get the property object
     property_obj = get_object_or_404(Property, id=id)
+
     try:
+        # Get the User_Profile object
         user_profile = User_Profile.objects.get(username=request.user.username)
     except User_Profile.DoesNotExist:
         messages.error(request, "User profile not found. Please contact support.")
         return redirect('home')
 
-    booking = Booking.objects.create(
-        user=user_profile,
-        property=property_obj,
-        booking_date=now(),
-    )
-    booking.save()
+    if request.method == 'POST':
+        # Get form data
+        phone = request.POST.get('phone')
+        booking_date = request.POST.get('date')
 
-    messages.success(request, "Property booked successfully!")
-    return redirect('home')
+        # Create the booking object
+        booking = Booking.objects.create(
+            user=user_profile,
+            property=property_obj,
+            booking_date=booking_date or now(),  # Use the provided date or current time
+        )
+        booking.save()
 
-@login_required
+        # Redirect to a success page or home
+        messages.success(request, "Property booked successfully!")
+        return redirect('booking_success', id=id)
+
+    # Render the booking form again in case of errors
+    context = {
+        'property': property_obj,
+        'user': request.user,
+    }
+    return render(request, 'book_property.html', context)
+@login_required(login_url='register')
 def booking_success(request, id):
     book_property = Property.objects.get(pk=id)
     context = {'book_property': book_property}
