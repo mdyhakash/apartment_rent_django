@@ -2,16 +2,31 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class User_Profile(models.Model):
+    USER_TYPE_CHOICES = [
+        ('general', 'General User'),
+        ('landlord', 'Landlord'),
+    ]
+    
     username = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=128)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15, null=True, blank=True)
-    join_date=models.DateField(auto_now=True)
-    address=models.TextField(max_length=200, blank=True, null=True)
-    profile_image = models.ImageField(upload_to='profiles/', null=True, blank=True,default='profiles/default_profile.png')
+    join_date = models.DateField(auto_now=True)
+    address = models.TextField(max_length=200, blank=True, null=True)
+    profile_image = models.ImageField(
+        upload_to='profiles/', 
+        null=True, 
+        blank=True, 
+        default='profiles/default_profile.png'
+    )
+    user_type = models.CharField(
+        max_length=10, 
+        choices=USER_TYPE_CHOICES, 
+        default='general'
+    )
 
     def __str__(self):
-        return self.username
+        return f"{self.username} ({self.get_user_type_display()})"
 
 class Property(models.Model):
     STATUS_CHOICES = [

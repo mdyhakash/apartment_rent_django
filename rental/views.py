@@ -1,4 +1,3 @@
-from django.utils import timezone
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from .models import *
 from .forms import *
@@ -13,13 +12,19 @@ from datetime import date
 def home(request):
     return render(request, template_name="home.html")
 
-# Registration view accessible without login
 def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
+        user_type = request.POST.get('user_type')  # Get user type from form
 
+        # Validate user_type
+        if user_type not in ['general', 'landlord']:
+            messages.error(request, 'Invalid user type.')
+            return redirect('register')
+
+        # Check for existing username or email
         if User.objects.filter(username=username).exists():
             messages.error(request, 'Username already taken.')
             return redirect('register')
@@ -27,16 +32,20 @@ def register(request):
             messages.error(request, 'Email already taken.')
             return redirect('register')
 
+        # Create the user
         user = User.objects.create_user(username=username, email=email, password=password)
         user.save()
 
+        # Create the user profile
         User_Profile.objects.create(
             username=username,
             email=email,
             password=user.password,
             join_date=date.today(),
+            user_type=user_type  # Set user type
         )
 
+        # Authenticate and log the user in
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
@@ -86,14 +95,26 @@ def property(request):
     }
     return render(request, 'property.html', context)
 
-
 def propertydetails(request, id):
     property = Property.objects.get(pk=id)
     context = {'property': property}
     return render(request, template_name="propertydetails.html", context=context)
 
+# Ensure only landlords can access these views
+def check_if_landlord(user):
+    try:
+        user_profile = User_Profile.objects.get(username=user.username)
+        return user_profile.user_type == 'landlord'
+    except User_Profile.DoesNotExist:
+        return False
+
 @login_required(login_url='register')
 def add_property(request):
+    # Check if the user is a landlord
+    if not check_if_landlord(request.user):
+        messages.error(request, 'Only landlords can add properties.')
+        return redirect('home')
+    
     form = PropertyForm()
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES)
@@ -104,6 +125,11 @@ def add_property(request):
 
 @login_required(login_url='register')
 def update_property(request, id):
+    # Check if the user is a landlord
+    if not check_if_landlord(request.user):
+        messages.error(request, 'Only landlords can update properties.')
+        return redirect('home')
+    
     property = Property.objects.get(pk=id)
     form = PropertyForm(instance=property)
     if request.method == 'POST':
@@ -115,6 +141,11 @@ def update_property(request, id):
 
 @login_required(login_url='register')
 def delete_property(request, id):
+    # Check if the user is a landlord
+    if not check_if_landlord(request.user):
+        messages.error(request, 'Only landlords can delete properties.')
+        return redirect('home')
+    
     Property.objects.get(pk=id).delete()
     return redirect('property')
 
@@ -185,6 +216,7 @@ def book_property(request, id):
         'user': request.user,
     }
     return render(request, 'book_property.html', context)
+
 @login_required(login_url='register')
 def booking_success(request, id):
     book_property = Property.objects.get(pk=id)

@@ -10,8 +10,7 @@
     <div class="flex min-h-screen bg-white">
       <div
         class="w-1/2 bg-cover md:block hidden"
-        style="
-          background-image: url(https://images.unsplash.com/photo-1574259392081-dbe3c19cd15e?q=80&w=1452&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+        style="background-image: url(https://images.unsplash.com/photo-1574259392081-dbe3c19cd15e?q=80&w=1452&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
         "
       ></div>
 
@@ -75,10 +74,23 @@
             />
           </div>
 
+          <!-- New User Type Selection Field -->
+          <div class="mt-5">
+            <label for="user_type" class="block text-gray-700">Select User Type</label>
+            <select
+              name="user_type"
+              class="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent"
+              required
+            >
+              <option value="general">General User</option>
+              <option value="landlord">Landlord</option>
+            </select>
+          </div>
+
           <div class="mt-3 block text-sm md:font-sans text-xs text-gray-800">
             <input type="checkbox" class="inline-block border-0" />
-            <span display="inline" class=""
-              >By creating an account you are agreeing to our
+            <span display="inline" class="">
+              By creating an account you are agreeing to our
               <a class="" href="#" target="_blank" data-test="Link">
                 <span class="underline">Terms and Conditions</span>
               </a>
