@@ -197,8 +197,6 @@ def book_property(request, id):
         )
       booking.save()
       context={'property':property}
-
-        
       return render(request, 'book_property/booking.html',context=context)
 
 @login_required(login_url='register')
@@ -207,6 +205,11 @@ def booking_success(request, id):
     context = {'book_property': book_property}
     return render(request, 'book_property/booking_success.html', context=context)
 
+@login_required(login_url='register')
+def booking_history(request):
+    booking = Booking.objects.all()
+    context = {'booking':booking}
+    return render(request, 'book_property/booking_history.html', context)    
 @login_required
 def profile(request, username):
     user_profile = get_object_or_404(User_Profile, username=username)
