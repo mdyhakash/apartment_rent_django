@@ -8,4 +8,4 @@ class PropertyForm(ModelForm):
 class UserForm(ModelForm):
     class Meta:
         model=User_Profile
-        fields='__all__'
+        fields = ['email', 'phone', 'address', 'profile_image']

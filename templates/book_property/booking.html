@@ -7,96 +7,48 @@ Book Now
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Booking</title>
 </head>
 <body>
     {% block content %}
-   
-
     <div class="flex items-center justify-center p-12">
 
-        <div class="bg-gray-100 rounded-lg shadow-md p-4">
-            <!-- Image -->
-            <div class="mb-4">
-                <img src="{{ property.image_1.url }}" alt="property Image" class="w-64 h-auto rounded-lg shadow-2xl">
+        {% if user.profile.user_type == 'landlord' %}
+            <div class="bg-gray-100 rounded-lg shadow-md p-4">
+                <h3 class="text-xl font-semibold mb-2">Sorry, landlords cannot book properties.</h3>
+                <p class="text-lg">You are a landlord, and booking a property is not allowed for you.</p>
+                <a href="{% url 'property' %}" class="text-blue-500 underline mt-4">Go back to Property List</a>
             </div>
-           
-            <!-- Information -->
-            <div>
-                <h3 class="text-xl font-semibold mb-2">Booked Apertment</h3>
-                <div class="flex flex-col">
-                    <p><span class="font-semibold">Property Name:</span> {{ property.name }}</p>
-                    <p><span class="font-semibold">Price:</span> {{ property.price }} lac</p>
-                    <p><span class="font-semibold">Area:</span> {{ property.sqft }} sqft</p>
-                    <p><span class="font-semibold">Address:</span> {{ property.address }}</p>
-                </div>
-            </div>
-        </div>
-       
-       
-        <div class="mx-auto w-full max-w-[550px] bg-white">
-            <form method="post">
-                {% csrf_token %}
-                <input type="hidden" name="property_id" value="{{ property.id }}">
-                <div class="mb-5">
-                    <label for="phone" class="mb-3 block text-base font-medium text-[#07074D]">
-                        Username
-                    </label>
-                    <input type="text" name="username" id="phone" placeholder="{{ user.username }}"
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-gray-900 outline-none focus:border-[#6A64F1] focus:shadow-md" readonly/>
-                </div>
-                <div class="mb-5">
-                    <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
-                        Email
-                    </label>
-                    <input type="email" name="email" id="email" placeholder="{{ user.email }}"
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#1e1e1f] outline-none focus:border-[#6A64F1] focus:shadow-md" readonly/>
-                </div>
-                <div class="mb-5">
-                    <label for="phone" class="mb-3 block text-base font-medium text-[#07074D]">
-                        Phone Number
-                    </label>
-                    <input type="text" name="phone" id="phone" placeholder="Enter your phone number"
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+        {% else %}
+            <div class="bg-gray-100 rounded-lg shadow-md p-4">
+                <!-- Image -->
+                <div class="mb-4">
+                    <img src="{{ property.image_1.url }}" alt="property Image" class="w-64 h-auto rounded-lg shadow-2xl">
                 </div>
 
-                <div class="mb-5">
-                    <label for="phone" class="mb-3 block text-base font-medium text-[#07074D]">
-                       Total Price
-                    </label>
-                    <input type="text" name="price" id="price" placeholder="{{ property.price }} lac"
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" readonly/>
-                </div>
-               
-                <div class="-mx-3 flex flex-wrap">
-                    <div class="w-full px-3 sm:w-1/2">
-                        <div class="mb-5">
-                            <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
-                                Booking Date
-                            </label>
-                            <input type="datetime-local" name="date" id="date"
-                                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                        </div>
-                    </div>
-                   
-                </div>
-           
+                <!-- Information -->
                 <div>
-                    <button type="submit"
-                        class="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                        Book Now
-                    </button>
+                    <h3 class="text-xl font-semibold mb-2">Booked Apartment</h3>
+                    <div class="flex flex-col">
+                        <p><span class="font-semibold">Property Name:</span> {{ property.name }}</p>
+                        <p><span class="font-semibold">Price:</span> {{ property.price }} lac</p>
+                        <p><span class="font-semibold">Area:</span> {{ property.sqft }} sqft</p>
+                        <p><span class="font-semibold">Address:</span> {{ property.address }}</p>
+                    </div>
                 </div>
-            </form>
-        </div>
+            </div>
+
+                    <div>
+                        <a href="{% url 'booking_success' property.id %}" class="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">CONFIRM BOOKING</a>
+                    
+                    </div>
+                </form>
+            </div>
+        {% endif %}
     </div>
-
-
-
-
     {% endblock %}
 </body>
 </html>
