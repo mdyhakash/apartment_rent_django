@@ -70,9 +70,21 @@ def signout(request):
 # Property views
 
 def property(request):
-    property = Property.objects.all()
-    context = {'property': property}
-    return render(request, template_name="property.html", context=context)
+    sort_by = request.GET.get('sort_by', 'location')  # Default sort by district
+    order = request.GET.get('order', 'asc')  # Default order is ascending
+
+    # Determine ordering
+    if order == 'desc':
+        sort_by = f"-{sort_by}"
+
+    property = Property.objects.all().order_by(sort_by)
+
+    context = {
+        'property': property,
+        'sort_by': sort_by.lstrip('-'),
+        'order': order,
+    }
+    return render(request, 'property.html', context)
 
 
 def propertydetails(request, id):
