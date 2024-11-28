@@ -27,6 +27,8 @@ urlpatterns = [
     path('delete_user/<str:id>',prop_views.delete_user,name='delete_user'),
     
     # booking
-    path('booking_history/', prop_views.booking_history, name='booking_history')
+    path('booking_history/', prop_views.booking_history, name='booking_history'),
+    
+    path('about_us/', prop_views.about_us , name='about_us')
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

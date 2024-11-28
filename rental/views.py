@@ -215,8 +215,13 @@ def booking_history(request):
     booking = Booking.objects.all()
     context = {'booking': booking}
     return render(request, 'book_property/booking_history.html', context)
+
 @login_required
 def profile(request, username):
     user_profile = get_object_or_404(User_Profile, username=username)
     return render(request, 'profile.html', {'user_profile': user_profile})
+
+def about_us(request):
+    
+    return render(request, template_name= 'about_us.html')
 
