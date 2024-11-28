@@ -207,9 +207,14 @@ def booking_success(request, id):
 
 @login_required(login_url='register')
 def booking_history(request):
+    # Check if the user is a landlord
+    if not check_if_landlord(request.user):
+        messages.error(request, 'Only landlords can view the booking history.')
+        return redirect('home')
+
     booking = Booking.objects.all()
-    context = {'booking':booking}
-    return render(request, 'book_property/booking_history.html', context)    
+    context = {'booking': booking}
+    return render(request, 'book_property/booking_history.html', context)
 @login_required
 def profile(request, username):
     user_profile = get_object_or_404(User_Profile, username=username)
