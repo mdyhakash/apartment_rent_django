@@ -221,7 +221,9 @@ def profile(request, username):
     user_profile = get_object_or_404(User_Profile, username=username)
     return render(request, 'profile.html', {'user_profile': user_profile})
 
-def about_us(request):
-    
+def about_us(request):   
     return render(request, template_name= 'about_us.html')
+
+def support(request):   
+    return render(request, template_name= 'support.html')
 

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Apartment Rentals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans leading-normal tracking-normal">
+    <header
+    class="shadow-md sticky top-0 z-50 py-4 px-4 sm:px-10 bg-white bg-opacity-75 backdrop-blur-lg"
+  >
+    <div class="flex flex-wrap items-center gap-4">
+      <a href="/"
+        ><img
+          src="https://i.postimg.cc/tgGNm4r3/propops-logo.png"
+          alt="logo"
+          class="w-24"
+        />
+      </a>
+
+      <div class="flex ml-auto lg:order-1">
+        {% if user.is_authenticated %}
+
+        <span class="px-4 py-2 text-md rounded-lg font-semibold text-black">
+          Welcome,
+          <a href="{% url 'profile' user.username %}" class="text-blue-800"
+            >{{ user.username }}</a
+          >
+        </span>
+
+        <a
+          href="{% url 'signout' %}"
+          class="px-4 py-2 text-md rounded-lg font-semibold text-white bg-gradient-to-r from-red-400 to-pink-500 transition-all ease-in-out duration-300 hover:from-pink-500 hover:to-yellow-500 ml-4"
+        >
+          Logout
+        </a>
+        {% else %}
+
+        <a
+          href="{%url 'login'%}"
+          class="px-4 py-2 text-md rounded-lg font-semibold text-white bg-gradient-to-r from-green-400 to-blue-500 transition-all ease-in-out duration-300 hover:from-pink-500 hover:to-yellow-500"
+          >Login</a
+        >
+        <a
+          href="{% url 'register' %}"
+          class="px-4 py-2 text-md rounded-lg font-semibold text-white bg-gradient-to-r from-green-400 to-blue-500 transition-all ease-in-out duration-300 hover:from-pink-500 hover:to-yellow-500 ml-4"
+          >Sign up</a
+        >
+        {% endif %}
+      </div>
+
+      <ul
+        class="flex lg:ml-12 lg:space-x-4 max-lg:space-y-2 max-lg:block max-lg:w-full"
+      >
+        <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
+          <a
+            href="{% url 'property' %}"
+            class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
+            >Explore Property</a
+          >
+        </li>
+        <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
+          <a
+            href="{%url 'about_us' %}"
+            class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
+            >About</a
+          >
+        </li>
+        <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
+          <a
+            href="#"
+            class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
+            >Support</a
+          >
+        </li>
+        <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
+          <a
+            href="{% url 'user' %}"
+            class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
+            >Users</a
+          >
+        </li>
+        <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
+          <a
+            href="{% url 'booking_history' %}"
+            class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
+            >Booking History</a
+          >
+        </li>
+      </ul>
+    </div>
+  </header>
+
+    <!-- Support Header -->
+    <header class="bg-gray-100 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">How Can We Help You?</h1>
+            <p class="text-lg text-gray-600">
+                Our support team is here to assist you with any questions or concerns about booking or adding properties.
+            </p>
+        </div>
+    </header>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-semibold text-gray-800 text-center mb-8">Frequently Asked Questions</h2>
+            <div class="space-y-6">
+                <!-- FAQ Item 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-800">How do I list my property?</h3>
+                    <p class="text-gray-600 mt-2">
+                        To add your property, sign up as a Landlord and navigate to the "Explore Property" section. Fill in the necessary details by clicking "Add Property" button, and your property will be live on our platform.
+                    </p>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-800">How can I contact the property owner?</h3>
+                    <p class="text-gray-600 mt-2">
+                        Each property listing includes a "Book now" button. Click on "Book now" and the Landlord of the Property will get an email and contact with you.
+                    </p>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-800">What should I do if I encounter a problem?</h3>
+                    <p class="text-gray-600 mt-2">
+                        If you encounter any issues, please reach out to our support team using the email  <span class="text-blue-500">support@propops.com</span>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Footer Section -->
+    <footer class="bg-gray-200" style="font-family: 'Martian Mono', monospace; font-optical-sizing: auto;">
+        <div class="py-8 px-4 sm:px-12">
+          <div class="flex flex-wrap items-center justify-between">
+            <div class="w-full md:w-auto text-center md:text-left mb-6 md:mb-0">
+              <a href="/" class="text-gray-700 hover:text-gray-900 font-extrabold text-2xl">
+                <img src="https://i.postimg.cc/tgGNm4r3/propops-logo.png" alt="logo" class='w-24' />
+              </a>
+            </div>
+            <hr class="my-6 border-gray-300" />
+            <p class='text-center text-gray-700 text-base'>Copyright © 2024<a href='/'
+          target='_blank' class="hover:underline mx-1">PropOps </a>All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
