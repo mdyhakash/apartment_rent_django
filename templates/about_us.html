@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - PropOps</title>
 
-    <!-- Tailwind CSS CDN -->
+   
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 font-sans">
@@ -95,13 +95,13 @@
         </ul>
       </div>
     </header>
-    <!-- Hero Section -->
+    
     <section class="relative bg-blue-600 text-white">
-        <!-- Background Image -->
+       
         <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('your-image-url.jpg');"></div>
 
     
-        <!-- Content -->
+        
         <div class="relative z-10 max-w-7xl mx-auto px-6 py-16 text-center">
             <h1 class="text-5xl font-bold tracking-tight sm:text-6xl mb-6">Welcome to PropOps</h1>
             <p class="text-xl text-white mb-8">Find your perfect home away from home, whether it's for a day or a year.</p>
@@ -109,18 +109,18 @@
     </section>
     
 
-    <!-- About Us Section -->
+    
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <h2 class="text-4xl font-bold text-gray-800 mb-6">About Us</h2>
             <p class="text-xl text-gray-600 mb-10">Our goal is to provide affordable, comfortable, and well-maintained rental homes for people from all walks of life.</p>
             <div class="grid md:grid-cols-2 gap-12">
-                <!-- Mission Statement -->
+               
                 <div class="text-left">
                     <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h3>
                     <p class="text-lg text-gray-600">We aim to simplify the home rental process with transparency, reliability, and customer-focused service. Our homes are designed to provide comfort and convenience for our residents.</p>
                 </div>
-                <!-- Why Choose Us -->
+                
                 <div class="text-left">
                     <h3 class="text-2xl font-semibold text-gray-800 mb-4">Why Choose Us?</h3>
                     <ul class="list-disc list-inside text-lg text-gray-600 space-y-3">
@@ -135,41 +135,41 @@
         </div>
     </section>
 
-    <!-- Team Section -->
+
     <section class="py-20 bg-gray-100">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold text-gray-800 mb-10">Meet Our Team</h2>
-            <div class="grid md:grid-cols-4 gap-12">
-                <div class="flex flex-col items-center">
-                    <img src="akash.jpg" alt="Team Member" class="rounded-full mb-4">
-                    <h3 class="text-xl font-semibold text-gray-800">Akash</h3>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img src="hasib.jpg" alt="Team Member" class="rounded-full mb-4">
-                    <h3 class="text-xl font-semibold text-gray-800">Hasib</h3>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img src="" alt="Team Member" class="rounded-full mb-4">
-                    <h3 class="text-xl font-semibold text-gray-800">Maisha</h3>
-                </div>
-                <!-- New Team Member -->
-                <div class="flex flex-col items-center">
-                    <img src="saima.jpg" alt="Team Member" class="rounded-full mb-4">
-                    <h3 class="text-xl font-semibold text-gray-800">Sayma</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Call to Action Section -->
-    <section class="bg-blue-600 text-white py-20">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-6">Ready to Find Your Perfect Home?</h2>
-            <p class="text-lg mb-8">Browse our available rental homes and start your journey today!</p>
-
-        </div>
-    </section>
-
-    <!-- Footer Section -->
+      <div class="max-w-7xl mx-auto px-6 text-center">
+          <h2 class="text-4xl font-bold text-gray-800 mb-10">Meet Our Team</h2>
+         
+          <div class="grid md:grid-cols-4 gap-12 items-center justify-center">
+              
+              <div class="flex flex-col items-center">
+                  <img src="{{ member.image1.url }}" alt="Team Member" class="w-64 h-64 object-cover rounded-full mb-4">
+                  <h3 class="text-xl font-semibold text-gray-800">Akash</h3>
+              </div>
+             
+              <div class="flex flex-col items-center">
+                  <img src="{{ member.image2.url }}" alt="Team Member" class="w-64 h-64 object-cover rounded-full mb-4">
+                  <h3 class="text-xl font-semibold text-gray-800">Hasib</h3>
+              </div>
+              
+              <div class="flex flex-col items-center">
+                  <img src="{{ member.image3.url }}" alt="Team Member" class="w-64 h-64 object-cover rounded-full mb-4">
+                  <h3 class="text-xl font-semibold text-gray-800">Maisha</h3>
+              </div>
+             
+              <div class="flex flex-col items-center">
+                  <img src="{{ member.image4.url }}" alt="Team Member" class="w-64 h-64 object-cover rounded-full mb-4">
+                  <h3 class="text-xl font-semibold text-gray-800">Saima</h3>
+              </div>
+          </div>
+      </div>
+  </section>
+  
+             
+  
+   
+    
+    
     <footer class="bg-gray-200" style="font-family: 'Martian Mono', monospace; font-optical-sizing: auto;">
         <div class="py-8 px-4 sm:px-12">
           <div class="flex flex-wrap items-center justify-between">

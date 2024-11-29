@@ -13,12 +13,7 @@ class User_Profile(models.Model):
     phone = models.CharField(max_length=15, null=True, blank=True)
     join_date = models.DateField(auto_now=True)
     address = models.TextField(max_length=200, blank=True, null=True)
-    profile_image = models.ImageField(
-        upload_to='profiles/', 
-        null=True, 
-        blank=True, 
-        default='profiles/default_profile.png'
-    )
+    profile_image = models.ImageField(upload_to='profiles/', null=True, blank=True, default='profiles/default_profile.png')
     user_type = models.CharField(
         max_length=10, 
         choices=USER_TYPE_CHOICES, 
@@ -68,5 +63,12 @@ class Booking(models.Model):
 
     def __str__(self):
         return str(self.user)
+    
+
+class Member(models.Model):
+    image1=models.ImageField(upload_to='members/', null=True, blank=True, default='')
+    image2=models.ImageField(upload_to='members/', null=True, blank=True, default='')
+    image3=models.ImageField(upload_to='members/', null=True, blank=True, default='')
+    image4=models.ImageField(upload_to='members/', null=True, blank=True, default='')
     
 

@@ -225,7 +225,9 @@ def profile(request, username):
     return render(request, 'profile.html', {'user_profile': user_profile})
 
 def about_us(request):   
-    return render(request, template_name= 'about_us.html')
+    members=Member.objects.get()
+    context={'member':members,}
+    return render(request, template_name= 'about_us.html',context=context)
 
 def support(request):   
     return render(request, template_name= 'support.html')
