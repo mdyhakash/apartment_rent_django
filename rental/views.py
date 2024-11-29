@@ -14,6 +14,7 @@ def home(request):
     return render(request, 'home.html', {'user_profile': user_profile})
     
 
+
 def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -21,12 +22,14 @@ def register(request):
         password = request.POST.get('password')
         user_type = request.POST.get('user_type')  
 
-       
-        if user_type not in ['general', 'landlord']:
-            messages.error(request, 'Invalid user type.')
-            return redirect('register')
+        
+        allowed_landlord_usernames = ['hasib_174', 'maisha_160', 'akash_153', 'saima_173']
 
        
+        if user_type == 'landlord' and username not in allowed_landlord_usernames:
+            messages.error(request, 'Only specific users can register as a landlord.')
+            return redirect('register')
+
         if User.objects.filter(username=username).exists():
             messages.error(request, 'Username already taken.')
             return redirect('register')
@@ -38,13 +41,13 @@ def register(request):
         user = User.objects.create_user(username=username, email=email, password=password)
         user.save()
 
-        
+       
         User_Profile.objects.create(
             username=username,
             email=email,
             password=user.password,
             join_date=date.today(),
-            user_type=user_type  
+            user_type=user_type
         )
 
         
@@ -52,7 +55,7 @@ def register(request):
         if user is not None:
             auth_login(request, user)
             messages.success(request, 'You have successfully signed up!')
-            return redirect('home')
+            return redirect('register')
 
     return render(request, 'register.html')
 
