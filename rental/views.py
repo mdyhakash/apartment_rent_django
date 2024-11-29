@@ -188,6 +188,9 @@ def delete_user(request, id):
 
 @login_required(login_url='register')
 def book_property(request, id):
+      if  check_if_landlord(request.user):
+        messages.error(request, 'Only user can book properties.')
+        return redirect('home')
   
       property = get_object_or_404(Property, id=id)
       user_profile = User_Profile.objects.get(username=request.user.username)
