@@ -3,35 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User Profiles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <a href="{% url 'add_user'%}">add user</a>
-    <br>
-
-    {% for i in user %}
-      {{ i.username }}
-      <br>
-      {{ i.password }}
-      <br>
-      {% if i.profile_image %}
-    <img src="{{ i.profile_image.url }}" alt="hasib" width="400">
-     {% else %}
-    <p>No profile image available.</p>
-     {% endif %}
+<body class="bg-gradient-to-br from-green-400 via-teal-400 to-blue-500 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto px-4 py-8">
+       
+        <div class="mb-6 flex justify-center">
+            <a href="{% url 'home' %}"
+               class="px-6 py-2 bg-white text-green-600 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition">
+                Back to Home
+            </a>
+        </div>
 
 
-    <br>
-     <a href="{% url 'update_user' i.id %}">update</a>
-    <br>
-    <a href="{% url 'delete_user' i.id %}">delete</a>
-    <br>
-     
+       
+        <h1 class="text-4xl font-extrabold text-center text-white mb-10 drop-shadow-lg">Our Amazing Users</h1>
 
 
-
-    {% endfor%}
-
-    
+       
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for i in user %}
+           
+            <div class="bg-gradient-to-br from-yellow-100 to-white rounded-xl shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+               
+                <div class="relative">
+                    {% if i.profile_image %}
+                    <img src="{{ i.profile_image.url }}" alt="{{ i.username }}" class="w-full h-48 object-cover">
+                    {% else %}
+                    <img src="/static/images/default_profile.png" alt="Default Profile" class="w-full h-48 object-cover">
+                    {% endif %}
+                </div>
+               
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ i.username }}</h2>
+                    <p class="text-gray-700"><strong>Email:</strong> {{ i.email }}</p>
+                    <p class="text-gray-700"><strong>Phone:</strong> {{ i.phone|default:"N/A" }}</p>
+                    <p class="text-gray-700"><strong>Address:</strong> {{ i.address|default:"N/A" }}</p>
+                    <p class="text-gray-700"><strong>User Type:</strong> {{ i.get_user_type_display }}</p>
+                    <p class="text-gray-700"><strong>Joined On:</strong> {{ i.join_date }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>

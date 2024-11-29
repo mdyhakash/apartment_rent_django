@@ -3,23 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bookings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 min-h-screen flex items-center justify-center">
 
-    {% for i in booking %}
-      {{ i.user }}
-      <br>
-      {{ i.property }}
-      <br>
-      {{ i.booking_date }}
 
-      <br>
-      <br>
-      <br>
+    <div class="container mx-auto px-4 py-8">
+        <!-- Title -->
+        <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">Booking Details</h1>
 
-    {% endfor%}
 
-    
-</body>
-</html>
+        <!-- Table -->
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white rounded-lg shadow-lg overflow-hidden">
+                <thead class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
+                    <tr>
+                        <th class="px-6 py-3 text-left font-semibold uppercase">User</th>
+                        <th class="px-6 py-3 text-left font-semibold uppercase">Property</th>
+                        <th class="px-6 py-3 text-left font-semibold uppercase">Booking Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in booking %}
+                    <tr class="odd:bg-gray-100 even:bg-gray-50 hover:bg-yellow-100">
+                        <td class="px-6 py-4 text-gray-800 font-medium">{{ i.user }}</td>
+                        <td class="px-6 py-4 text-gray-800 font-medium">{{ i.property }}</td>
+                        <td class="px-6 py-4 text-gray-800 font-medium">{{ i.booking_date }}</td>
+                    </tr>
+                    {% endfor %}
+                    <!-- Home Button Row -->
+                    <tr class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+                        <td colspan="3" class="text-center px-6 py-4">
+                            <a href="{% url 'home' %}"
+                               class="px-6 py-2 bg-white text-blue-500 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition">
+                                Home
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
