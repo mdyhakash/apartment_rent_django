@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support - Apartment Rentals</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 </head>
 <body class="bg-gray-50 font-sans leading-normal tracking-normal">
     <header
@@ -74,25 +76,27 @@
             >Support</a
           >
         </li>
-        <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
-          <a
-            href="{% url 'user' %}"
-            class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
-            >Users</a
-          >
-        </li>
-        <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
-          <a
-            href="{% url 'booking_history' %}"
-            class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
-            >Booking History</a
-          >
-        </li>
+        {% if user_profile.user_type == "landlord" %}
+          <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
+            <a
+              href="{% url 'user' %}"
+              class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
+              >Users</a
+            >
+          </li>
+          <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
+            <a
+              href="{% url 'booking_history' %}"
+              class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
+              >Booking History</a
+            >
+          </li>
+          {% endif %}
       </ul>
     </div>
   </header>
 
-    <!-- Support Header -->
+    
     <header class="bg-gray-100 py-12">
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl font-bold text-gray-800 mb-4">How Can We Help You?</h1>
@@ -101,7 +105,7 @@
             </p>
         </div>
     </header>
-     <!-- FQA Section -->
+    
      <section id="faq" class="container relative mx-auto py-12 px-2">
 
         <h3 class="mb-14 text-teal-900 text-center text-3xl font-semibold decoration-teal-200/80 lg:text-left xl:text-4xl">
@@ -180,20 +184,37 @@
     
 
     
-    <!-- Footer Section -->
+    
     <footer class="bg-gray-200" style="font-family: 'Martian Mono', monospace; font-optical-sizing: auto;">
-        <div class="py-8 px-4 sm:px-12">
+      <div class="py-8 px-4 sm:px-12">
           <div class="flex flex-wrap items-center justify-between">
-            <div class="w-full md:w-auto text-center md:text-left mb-6 md:mb-0">
-              <a href="/" class="text-gray-700 hover:text-gray-900 font-extrabold text-2xl">
-                <img src="https://i.postimg.cc/tgGNm4r3/propops-logo.png" alt="logo" class='w-24' />
-              </a>
-            </div>
-            <hr class="my-6 border-gray-300" />
-            <p class='text-center text-gray-700 text-base'>Copyright © 2024<a href='/'
-          target='_blank' class="hover:underline mx-1">PropOps </a>All Rights Reserved.</p>
-        </div>
-    </footer>
+              <div class="w-full md:w-auto text-center md:text-left mb-6 md:mb-0">
+                  <a href="/" class="text-gray-700 hover:text-gray-900 font-extrabold text-2xl">
+                      <img src="https://i.postimg.cc/tgGNm4r3/propops-logo.png" alt="logo" class='w-24' />
+                  </a>
+              </div>
+              <!-- Social Media Links -->
+              <div class="flex items-center justify-center space-x-4">
+                  <a href="https://www.facebook.com/AlMamuunn" target="_blank" class="text-blue-700 hover:text-blue-900">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82V14.746H9.692V11.29h3.128V8.684c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.462.099 2.794.143v3.24h-1.917c-1.506 0-1.798.716-1.798 1.765v2.31h3.595l-.468 3.457h-3.127V24h6.127c.728 0 1.325-.597 1.325-1.324V1.325C24 .597 23.403 0 22.675 0z"/>
+                      </svg>
+                  </a>
+                  <a href="https://wa.me/" target="_blank" class="text-green-500 hover:text-green-700">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M20.52 3.47A11.93 11.93 0 0 0 12 0C5.372 0 0 5.372 0 12c0 2.123.553 4.194 1.6 6.02L.052 23.236a.905.905 0 0 0 1.039 1.039l5.216-1.549A11.937 11.937 0 0 0 12 24c6.627 0 12-5.373 12-12 0-3.206-1.252-6.215-3.48-8.53zM12 22.09c-2.038 0-4.051-.548-5.795-1.588a.906.906 0 0 0-.734-.086l-3.955 1.176 1.177-3.956a.906.906 0 0 0-.086-.733A10.202 10.202 0 0 1 1.91 12C1.91 6.478 6.478 1.91 12 1.91c5.522 0 10.09 4.568 10.09 10.09 0 5.521-4.568 10.09-10.09 10.09z"/>
+                          <path d="M16.066 13.58c-.084-.042-.49-.242-.921-.433-.24-.103-.539-.223-.843-.087-.199.088-.319.385-.444.565-.125.181-.324.208-.598.069a8.314 8.314 0 0 1-2.217-1.53c-.399-.399-.722-.847-.97-1.254-.145-.244-.011-.374.108-.51.12-.138.18-.23.27-.366.089-.136.06-.242-.015-.36-.044-.071-.398-.956-.545-1.314-.144-.35-.29-.305-.444-.311-.115-.005-.247-.006-.38-.006-.137 0-.36.051-.546.242-.187.191-.712.696-.712 1.696s.729 1.963.83 2.103c.101.14 1.435 2.187 3.482 3.066.487.209.866.333 1.162.426.488.155.93.134 1.283.082.391-.057 1.204-.492 1.373-.968.169-.476.169-.883.118-.968-.05-.084-.15-.134-.234-.177z"/>
+                      </svg>
+                  </a>
+              </div>
+          </div>
+          <hr class="my-6 border-gray-300" />
+          <p class='text-center text-gray-700 text-base'>Copyright © 2024<a href='/'
+        target='_blank' class="hover:underline mx-1">PropOps </a>All Rights Reserved.</p>
+      </div>
+  </footer>
+  
+  
 
 </body>
 </html>

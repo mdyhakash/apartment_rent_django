@@ -80,6 +80,7 @@
               >Support</a
             >
           </li>
+          {% if user_profile.user_type == "landlord" %}
           <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
             <a
               href="{% url 'user' %}"
@@ -94,6 +95,7 @@
               >Booking History</a
             >
           </li>
+          {% endif %}
         </ul>
       </div>
     </header>

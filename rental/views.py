@@ -10,7 +10,9 @@ from datetime import date
 
 
 def home(request):
-    return render(request, template_name="home.html")
+    user_profile =User_Profile.objects.all()
+    return render(request, 'home.html', {'user_profile': user_profile})
+    
 
 def register(request):
     if request.method == 'POST':
@@ -98,6 +100,7 @@ def property(request):
 def propertydetails(request, id):
     property = Property.objects.get(pk=id)
     context = {'property': property}
+    
     return render(request, template_name="propertydetails.html", context=context)
 
 
