@@ -30,6 +30,8 @@ urlpatterns = [
     path('booking_history/', prop_views.booking_history, name='booking_history'),
     
     path('about_us/', prop_views.about_us , name='about_us'),
-    path('support/', prop_views.support , name='support')
+    path('support/', prop_views.support , name='support'),
+    
+    path('not_available/', prop_views.not_available, name='not_available'),
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

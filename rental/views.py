@@ -126,12 +126,14 @@ def add_property(request):
             return redirect('property')
     return render(request, template_name='add_property.html', context={'form': form})
 
+def not_available(request):
+    return render(request, template_name='not_available.html')
 @login_required(login_url='register')
 def update_property(request, id):
     
     if not check_if_landlord(request.user):
         messages.error(request, 'Only landlords can update properties.')
-        return redirect('home')
+        return redirect('not_available')
     
     property = Property.objects.get(pk=id)
     form = PropertyForm(instance=property)
@@ -147,7 +149,7 @@ def delete_property(request, id):
     
     if not check_if_landlord(request.user):
         messages.error(request, 'Only landlords can delete properties.')
-        return redirect('home')
+        return redirect('not_available')
     
     Property.objects.get(pk=id).delete()
     return redirect('property')
