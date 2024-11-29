@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.timezone import now
 from datetime import date
 
-# Home page accessible without login
+
 def home(request):
     return render(request, template_name="home.html")
 
@@ -17,14 +17,14 @@ def register(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        user_type = request.POST.get('user_type')  # Get user type from form
+        user_type = request.POST.get('user_type')  
 
-        # Validate user_type
+       
         if user_type not in ['general', 'landlord']:
             messages.error(request, 'Invalid user type.')
             return redirect('register')
 
-        # Check for existing username or email
+       
         if User.objects.filter(username=username).exists():
             messages.error(request, 'Username already taken.')
             return redirect('register')
@@ -32,20 +32,20 @@ def register(request):
             messages.error(request, 'Email already taken.')
             return redirect('register')
 
-        # Create the user
+       
         user = User.objects.create_user(username=username, email=email, password=password)
         user.save()
 
-        # Create the user profile
+        
         User_Profile.objects.create(
             username=username,
             email=email,
             password=user.password,
             join_date=date.today(),
-            user_type=user_type  # Set user type
+            user_type=user_type  
         )
 
-        # Authenticate and log the user in
+        
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
@@ -54,7 +54,7 @@ def register(request):
 
     return render(request, 'register.html')
 
-# Login view accessible without login
+
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -70,19 +70,19 @@ def login(request):
 
     return render(request, 'login.html')
 
-# Logout view protected by login_required
+
 @login_required
 def signout(request):
     django_logout(request)
     return redirect('home')
 
-# Property views
+
 
 def property(request):
-    sort_by = request.GET.get('sort_by', 'location')  # Default sort by district
-    order = request.GET.get('order', 'asc')  # Default order is ascending
+    sort_by = request.GET.get('sort_by', 'location')  
+    order = request.GET.get('order', 'asc')  
 
-    # Determine ordering
+    
     if order == 'desc':
         sort_by = f"-{sort_by}"
 
@@ -100,7 +100,7 @@ def propertydetails(request, id):
     context = {'property': property}
     return render(request, template_name="propertydetails.html", context=context)
 
-# Ensure only landlords can access these views
+
 def check_if_landlord(user):
     try:
         user_profile = User_Profile.objects.get(username=user.username)
@@ -110,7 +110,7 @@ def check_if_landlord(user):
 
 @login_required(login_url='register')
 def add_property(request):
-    # Check if the user is a landlord
+    
     if not check_if_landlord(request.user):
         messages.error(request, 'Only landlords can add properties.')
         return redirect('home')
@@ -125,7 +125,7 @@ def add_property(request):
 
 @login_required(login_url='register')
 def update_property(request, id):
-    # Check if the user is a landlord
+    
     if not check_if_landlord(request.user):
         messages.error(request, 'Only landlords can update properties.')
         return redirect('home')
@@ -141,7 +141,7 @@ def update_property(request, id):
 
 @login_required(login_url='register')
 def delete_property(request, id):
-    # Check if the user is a landlord
+    
     if not check_if_landlord(request.user):
         messages.error(request, 'Only landlords can delete properties.')
         return redirect('home')
@@ -149,7 +149,7 @@ def delete_property(request, id):
     Property.objects.get(pk=id).delete()
     return redirect('property')
 
-# User views
+
 @login_required
 def user(request):
     user = User_Profile.objects.all()
@@ -185,7 +185,7 @@ def delete_user(request, id):
 
 @login_required(login_url='register')
 def book_property(request, id):
-    # Get the property object
+  
       property = get_object_or_404(Property, id=id)
       user_profile = User_Profile.objects.get(username=request.user.username)
     
@@ -193,7 +193,7 @@ def book_property(request, id):
       booking = Booking.objects.create(
             user=user_profile,
             property=property,
-            booking_date=booking_date or now(),  # Use the provided date or current time
+            booking_date=booking_date or now(),  
         )
       booking.save()
       context={'property':property}
@@ -207,7 +207,7 @@ def booking_success(request, id):
 
 @login_required(login_url='register')
 def booking_history(request):
-    # Check if the user is a landlord
+   
     if not check_if_landlord(request.user):
         messages.error(request, 'Only landlords can view the booking history.')
         return redirect('home')
