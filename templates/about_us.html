@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us - PropOps</title>
 
-   
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-50 font-sans">
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-50 font-sans">
     <header
       class="shadow-md sticky top-0 z-50 py-4 px-4 sm:px-10 bg-white bg-opacity-75 backdrop-blur-lg"
     >
@@ -95,94 +97,204 @@
         </ul>
       </div>
     </header>
-    
+
     <section class="relative bg-blue-600 text-white">
-       
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('your-image-url.jpg');"></div>
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url('your-image-url.jpg')"
+      ></div>
 
-    
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-6 py-16 text-center">
-            <h1 class="text-5xl font-bold tracking-tight sm:text-6xl mb-6">Welcome to PropOps</h1>
-            <p class="text-xl text-white mb-8">Find your perfect home away from home, whether it's for a day or a year.</p>
-        </div>
+      <div class="relative z-10 max-w-7xl mx-auto px-6 py-16 text-center">
+        <h1 class="text-5xl font-bold tracking-tight sm:text-6xl mb-6">
+          Welcome to PropOps
+        </h1>
+        <p class="text-xl text-white mb-8">
+          Find your perfect home away from home, whether it's for a day or a
+          year.
+        </p>
+      </div>
     </section>
-    
 
-    
     <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold text-gray-800 mb-6">About Us</h2>
-            <p class="text-xl text-gray-600 mb-10">Our goal is to provide affordable, comfortable, and well-maintained rental homes for people from all walks of life.</p>
-            <div class="grid md:grid-cols-2 gap-12">
-               
-                <div class="text-left">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h3>
-                    <p class="text-lg text-gray-600">We aim to simplify the home rental process with transparency, reliability, and customer-focused service. Our homes are designed to provide comfort and convenience for our residents.</p>
-                </div>
-                
-                <div class="text-left">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Why Choose Us?</h3>
-                    <ul class="list-disc list-inside text-lg text-gray-600 space-y-3">
-                        <li>Wide variety of rental properties to suit different needs</li>
-                        <li>Flexible lease terms and affordable pricing</li>
-                        <li>24/7 customer support to assist with any concerns</li>
-                        <li>Well-maintained homes with modern amenities</li>
-                        <li>Easy online booking and management system</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-6">About Us</h2>
+        <p class="text-xl text-gray-600 mb-10">
+          Our goal is to provide affordable, comfortable, and well-maintained
+          rental homes for people from all walks of life.
+        </p>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div class="text-left">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+              Our Mission
+            </h3>
+            <p class="text-lg text-gray-600">
+              We aim to simplify the home rental process with transparency,
+              reliability, and customer-focused service. Our homes are designed
+              to provide comfort and convenience for our residents.
+            </p>
+          </div>
 
+          <div class="text-left">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+              Why Choose Us?
+            </h3>
+            <ul class="list-disc list-inside text-lg text-gray-600 space-y-3">
+              <li>Wide variety of rental properties to suit different needs</li>
+              <li>Flexible lease terms and affordable pricing</li>
+              <li>24/7 customer support to assist with any concerns</li>
+              <li>Well-maintained homes with modern amenities</li>
+              <li>Easy online booking and management system</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="py-20 bg-gray-100">
       <div class="max-w-7xl mx-auto px-6 text-center">
-          <h2 class="text-4xl font-bold text-gray-800 mb-10">Meet Our Team</h2>
-         
-          <div class="grid md:grid-cols-4 gap-12 items-center justify-center">
-              
-              <div class="flex flex-col items-center">
-                  <img src="{{ member.image1.url }}" alt="Team Member" class="w-64 h-64 object-cover rounded-full mb-4">
-                  <h3 class="text-xl font-semibold text-gray-800">Akash</h3>
-              </div>
-             
-              <div class="flex flex-col items-center">
-                  <img src="{{ member.image2.url }}" alt="Team Member" class="w-64 h-64 object-cover rounded-full mb-4">
-                  <h3 class="text-xl font-semibold text-gray-800">Hasib</h3>
-              </div>
-              
-              <div class="flex flex-col items-center">
-                  <img src="{{ member.image3.url }}" alt="Team Member" class="w-64 h-64 object-cover rounded-full mb-4">
-                  <h3 class="text-xl font-semibold text-gray-800">Maisha</h3>
-              </div>
-             
-              <div class="flex flex-col items-center">
-                  <img src="{{ member.image4.url }}" alt="Team Member" class="w-64 h-64 object-cover rounded-full mb-4">
-                  <h3 class="text-xl font-semibold text-gray-800">Saima</h3>
-              </div>
-          </div>
-      </div>
-  </section>
-  
-             
-  
-   
-    
-    
-    <footer class="bg-gray-200" style="font-family: 'Martian Mono', monospace; font-optical-sizing: auto;">
-        <div class="py-8 px-4 sm:px-12">
-          <div class="flex flex-wrap items-center justify-between">
-            <div class="w-full md:w-auto text-center md:text-left mb-6 md:mb-0">
-              <a href="/" class="text-gray-700 hover:text-gray-900 font-extrabold text-2xl">
-                <img src="https://i.postimg.cc/tgGNm4r3/propops-logo.png" alt="logo" class='w-24' />
-              </a>
-            </div>
-            <hr class="my-6 border-gray-300" />
-            <p class='text-center text-gray-700 text-base'>Copyright © 2024<a href='/'
-          target='_blank' class="hover:underline mx-1">PropOps </a>All Rights Reserved.</p>
-        </div>
-    </footer>
+        <h2 class="text-4xl font-bold text-gray-800 mb-10">Meet Our Team</h2>
 
-</body>
+        <div class="grid md:grid-cols-4 gap-12 items-center justify-center">
+          <div class="flex flex-col items-center">
+            <img
+              src="{{ member.image1.url }}"
+              alt="Team Member"
+              class="w-64 h-64 object-cover rounded-full mb-4"
+            />
+            <h3 class="text-xl font-semibold text-gray-800">Akash</h3>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <img
+              src="{{ member.image2.url }}"
+              alt="Team Member"
+              class="w-64 h-64 object-cover rounded-full mb-4"
+            />
+            <h3 class="text-xl font-semibold text-gray-800">Hasib</h3>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <img
+              src="{{ member.image3.url }}"
+              alt="Team Member"
+              class="w-64 h-64 object-cover rounded-full mb-4"
+            />
+            <h3 class="text-xl font-semibold text-gray-800">Maisha</h3>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <img
+              src="{{ member.image4.url }}"
+              alt="Team Member"
+              class="w-64 h-64 object-cover rounded-full mb-4"
+            />
+            <h3 class="text-xl font-semibold text-gray-800">Saima</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      class="bg-gray-200"
+      style="font-family: 'Martian Mono', monospace; font-optical-sizing: auto"
+    >
+      <div class="container mx-auto py-8 px-4 sm:px-12">
+        <!-- Logo and Introduction -->
+        <div class="flex flex-wrap items-center justify-between">
+          <div class="w-full md:w-auto text-center md:text-left mb-6 md:mb-0">
+            <a
+              href="/"
+              class="text-gray-700 hover:text-gray-900 font-extrabold text-2xl"
+            >
+              <img
+                src="https://i.postimg.cc/tgGNm4r3/propops-logo.png"
+                alt="logo"
+                class="w-24 mx-auto md:mx-0"
+              />
+            </a>
+          </div>
+        </div>
+
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
+          <!-- About Section -->
+          <div>
+            <h3 class="text-xl font-bold text-blue-700 mb-4">About Us</h3>
+            <p class="text-sm text-gray-700">
+              Discover your ideal home with our easy-to-use apartment renting
+              platform. <br />Connecting tenants and landlords for a hassle-free
+              experience.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h3 class="text-xl font-bold text-blue-700 mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="{% url 'property' %}" class="hover:text-blue-500"
+                  >Browse Properties</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'about_us' %}" class="hover:text-blue-500"
+                  >About Us</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Section -->
+          <div>
+            <h3 class="text-xl font-bold text-blue-700 mb-4">Contact Us</h3>
+            <ul class="text-sm space-y-2 text-gray-700">
+              <li>
+                Email:
+                <a
+                  href="mailto:info@apartmentrenting.com"
+                  class="hover:text-blue-500"
+                  >info@propops.com</a
+                >
+              </li>
+              <li>
+                Phone:
+                <a href="tel:+8801714567890" class="hover:text-blue-500"
+                  >+8801714567890</a
+                >
+              </li>
+              <li>Address: 789 Apartment Street, Dhaka, Bangladesh</li>
+            </ul>
+          </div>
+        </div>
+ <!-- Social Links Section -->
+ <div class="mt-8 border-t border-gray-300 pt-4 text-center">
+  <div class="flex justify-center space-x-6 mb-4">
+      <a href="https://www.facebook.com/AlMamuunn" target="_blank" class="text-gray-700 hover:text-blue-700">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.792c0-.978.181-1.208 1.372-1.208h2.628v-5h-3.643c-3.732 0-5.357 1.686-5.357 4.837v3.163z" />
+          </svg>
+      </a>
+      <a href="https://wa.me/880145196403" target="_blank" class="text-gray-700 hover:text-green-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12.004 0c-6.625 0-12 5.373-12 12 0 2.119.568 4.153 1.646 5.96l-1.808 5.287 5.424-1.768c1.71.973 3.669 1.519 5.738 1.519 6.623 0 12-5.375 12-12s-5.377-12-12-12zm6.651 17.751c-.554.884-1.524 1.419-2.521 1.419-3.707 0-7.269-3.014-8.569-5.791-.361-.749-.676-1.568-.789-2.137-.046-.245-.085-.496-.085-.704 0-.602.21-1.147.54-1.539l.35-.396c.097-.11.236-.16.389-.129.437.092.964.283 1.495.596.394.234.761.525 1.098.884.18.195.423.31.686.319.354.014.697.014 1.065-.001.153-.007.296-.064.403-.165.188-.169.337-.404.417-.709.082-.31.049-.667-.091-.977-.112-.241-.267-.481-.47-.723-.268-.314-.561-.621-.911-.945-.326-.297-.65-.594-.952-.892-.243-.242-.356-.588-.298-.93.071-.41.354-.795.792-1.117.32-.243.67-.382 1.03-.47.099-.024.199-.048.301-.073.037-.009.072-.023.111-.026.032-.003.065-.013.098-.017.035-.005.071-.003.106-.009 2.344-.431 4.79 1.276 6.232 3.319.597.842 1.113 1.732 1.563 2.638.306.619.515 1.223.594 1.857.122.934-.039 1.869-.57 2.726z" />
+          </svg>
+      </a>
+      <!-- <a href="https://x.com" target="_blank" class="text-gray-700 hover:text-blue-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.953 4.57c-.885.391-1.833.656-2.825.775 1.013-.611 1.793-1.574 2.163-2.723-.949.555-2.005.959-3.127 1.184-.896-.959-2.17-1.555-3.594-1.555-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.122-4.088-.205-7.72-2.163-10.141-5.138-.423.722-.666 1.561-.666 2.459 0 1.692.861 3.186 2.169 4.065-.803-.026-1.56-.247-2.22-.616v.062c0 2.364 1.676 4.337 3.897 4.782-.408.111-.839.171-1.285.171-.314 0-.618-.031-.917-.089.618 1.931 2.416 3.336 4.548 3.374-1.67 1.309-3.778 2.091-6.065 2.091-.394 0-.779-.023-1.161-.067 2.162 1.384 4.72 2.193 7.476 2.193 8.97 0 13.864-7.434 13.864-13.874 0-.21-.004-.422-.014-.63.951-.688 1.777-1.552 2.436-2.533z" />
+          </svg>
+      </a> -->
+  </div>
+
+        <!-- Bottom Section -->
+        <div class="mt-8 border-t border-gray-300 pt-4 text-center">
+          <p class="text-sm text-gray-700">
+            Copyright © 2024
+            <a href="/" target="_blank" class="hover:underline mx-1">PropOps</a
+            >. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

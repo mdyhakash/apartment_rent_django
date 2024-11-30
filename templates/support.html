@@ -1,82 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Support - Apartment Rentals</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-</head>
-<body class="bg-gray-50 font-sans leading-normal tracking-normal">
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-gray-50 font-sans leading-normal tracking-normal">
     <header
-    class="shadow-md sticky top-0 z-50 py-4 px-4 sm:px-10 bg-white bg-opacity-75 backdrop-blur-lg"
-  >
-    <div class="flex flex-wrap items-center gap-4">
-      <a href="/"
-        ><img
-          src="https://i.postimg.cc/tgGNm4r3/propops-logo.png"
-          alt="logo"
-          class="w-24"
-        />
-      </a>
-
-      <div class="flex ml-auto lg:order-1">
-        {% if user.is_authenticated %}
-
-        <span class="px-4 py-2 text-md rounded-lg font-semibold text-black">
-          Welcome,
-          <a href="{% url 'profile' user.username %}" class="text-blue-800"
-            >{{ user.username }}</a
-          >
-        </span>
-
-        <a
-          href="{% url 'signout' %}"
-          class="px-4 py-2 text-md rounded-lg font-semibold text-white bg-gradient-to-r from-red-400 to-pink-500 transition-all ease-in-out duration-300 hover:from-pink-500 hover:to-yellow-500 ml-4"
-        >
-          Logout
+      class="shadow-md sticky top-0 z-50 py-4 px-4 sm:px-10 bg-white bg-opacity-75 backdrop-blur-lg"
+    >
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="/"
+          ><img
+            src="https://i.postimg.cc/tgGNm4r3/propops-logo.png"
+            alt="logo"
+            class="w-24"
+          />
         </a>
-        {% else %}
 
-        <a
-          href="{%url 'login'%}"
-          class="px-4 py-2 text-md rounded-lg font-semibold text-white bg-gradient-to-r from-green-400 to-blue-500 transition-all ease-in-out duration-300 hover:from-pink-500 hover:to-yellow-500"
-          >Login</a
-        >
-        <a
-          href="{% url 'register' %}"
-          class="px-4 py-2 text-md rounded-lg font-semibold text-white bg-gradient-to-r from-green-400 to-blue-500 transition-all ease-in-out duration-300 hover:from-pink-500 hover:to-yellow-500 ml-4"
-          >Sign up</a
-        >
-        {% endif %}
-      </div>
+        <div class="flex ml-auto lg:order-1">
+          {% if user.is_authenticated %}
 
-      <ul
-        class="flex lg:ml-12 lg:space-x-4 max-lg:space-y-2 max-lg:block max-lg:w-full"
-      >
-        <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
+          <span class="px-4 py-2 text-md rounded-lg font-semibold text-black">
+            Welcome,
+            <a href="{% url 'profile' user.username %}" class="text-blue-800"
+              >{{ user.username }}</a
+            >
+          </span>
+
           <a
-            href="{% url 'property' %}"
-            class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
-            >Explore Property</a
+            href="{% url 'signout' %}"
+            class="px-4 py-2 text-md rounded-lg font-semibold text-white bg-gradient-to-r from-red-400 to-pink-500 transition-all ease-in-out duration-300 hover:from-pink-500 hover:to-yellow-500 ml-4"
           >
-        </li>
-        <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
+            Logout
+          </a>
+          {% else %}
+
           <a
-            href="{%url 'about_us' %}"
-            class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
-            >About</a
+            href="{%url 'login'%}"
+            class="px-4 py-2 text-md rounded-lg font-semibold text-white bg-gradient-to-r from-green-400 to-blue-500 transition-all ease-in-out duration-300 hover:from-pink-500 hover:to-yellow-500"
+            >Login</a
           >
-        </li>
-        <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
           <a
-            href="#"
-            class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
-            >Support</a
+            href="{% url 'register' %}"
+            class="px-4 py-2 text-md rounded-lg font-semibold text-white bg-gradient-to-r from-green-400 to-blue-500 transition-all ease-in-out duration-300 hover:from-pink-500 hover:to-yellow-500 ml-4"
+            >Sign up</a
           >
-        </li>
-        {% if user_profile.user_type == "landlord" %}
+          {% endif %}
+        </div>
+
+        <ul
+          class="flex lg:ml-12 lg:space-x-4 max-lg:space-y-2 max-lg:block max-lg:w-full"
+        >
+          <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
+            <a
+              href="{% url 'property' %}"
+              class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
+              >Explore Property</a
+            >
+          </li>
+          <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
+            <a
+              href="{%url 'about_us' %}"
+              class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
+              >About</a
+            >
+          </li>
+          <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
+            <a
+              href="#"
+              class="lg:hover:text-[#007bff] text-black block font-semibold text-[15px]"
+              >Support</a
+            >
+          </li>
+          {% if user_profile.user_type == "landlord" %}
           <li class="max-lg:border-b max-lg:py-2 px-3 max-lg:rounded">
             <a
               href="{% url 'user' %}"
@@ -92,129 +94,225 @@
             >
           </li>
           {% endif %}
-      </ul>
-    </div>
-  </header>
-
-    
-    <header class="bg-gray-100 py-12">
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl font-bold text-gray-800 mb-4">How Can We Help You?</h1>
-            <p class="text-lg text-gray-600">
-                Our support team is here to assist you with any questions or concerns about booking or adding properties.
-            </p>
-        </div>
-    </header>
-    
-     <section id="faq" class="container relative mx-auto py-12 px-2">
-
-        <h3 class="mb-14 text-teal-900 text-center text-3xl font-semibold decoration-teal-200/80 lg:text-left xl:text-4xl">
-            Frequently Asked Questions
-        </h3>
-    
-    
-        <div class="my-6">
-            <div
-                class="rounded-t-2xl bg-teal-600/80  w-full cursor-pointer select-none border-2 border-teal-600/30 px-4 py-4 text-gray-100 transition duration-300 hover:border-teal-600/80 hover:text-white">
-                <h4 class="text-lg font-medium">How do I create an account on the website?</h4>
-            </div>
-            <div
-                class="inline-flex w-full rounded-b-2xl border-x-2 border-b-2 border-dashed border-teal-600/30 bg-teal-100/50 px-4 py-4 text-teal-800">
-                <h5>
-                    To create an account, click on the "Sign Up" button located at the top right corner of the homepage.
-                    <br>
-                    Fill out the required information, including your name, email address, password and select what type of user you are(Example: General user/ Landlord).
-                    <br>
-                    Click "Sign Up Now" to complete the registration process.
-                </h5>
-            </div>
-        </div>
-    
-    
-        <div class="my-6">
-            <div
-                class="rounded-t-2xl bg-teal-600/80 w-full cursor-pointer select-none border-2 border-teal-600/30 px-4 py-4 text-gray-100 transition duration-300 hover:border-teal-600/80 hover:text-white">
-                <h4 class="text-lg font-medium">How do I list my property?</h4>
-            </div>
-            <div
-                class="inline-flex w-full rounded-b-2xl border-x-2 border-b-2 border-dashed border-teal-600/30 bg-teal-100/50 px-4 py-4 text-teal-800">
-                <h5>To add your property, sign up as a Landlord and navigate to the "Explore Property" section. Fill in the necessary details by clicking "Add Property" button, and your property will be live on our platform.
-                </h5>
-            </div>
-        </div>
-    
-    
-        <div class="my-6">
-            <div
-                class="rounded-t-2xl bg-teal-600/80 w-full cursor-pointer select-none border-2 border-teal-600/30 px-4 py-4 text-gray-100 transition duration-300 hover:border-teal-600/80 hover:text-white">
-                <h4 class="text-lg font-medium">How long does Booking take?</h4>
-            </div>
-            <div
-                class="inline-flex w-full rounded-b-2xl border-x-2 border-b-2 border-dashed border-teal-600/30 bg-teal-100/50 px-4 py-4 text-teal-800">
-                <h5>
-                    The booking process is quick and easy. Simply select the property you wish to book, and then click on "Book Now".
-                </h5>
-            </div>
-        </div>
-        <div class="my-6">
-            <div
-                class="rounded-t-2xl bg-teal-600/80 w-full cursor-pointer select-none border-2 border-teal-600/30 px-4 py-4 text-gray-100 transition duration-300 hover:border-teal-600/80 hover:text-white">
-                <h4 class="text-lg font-medium">How can I contact the property owner?</h4>
-            </div>
-            <div
-                class="inline-flex w-full rounded-b-2xl border-x-2 border-b-2 border-dashed border-teal-600/30 bg-teal-100/50 px-4 py-4 text-teal-800">
-                <h5>
-                    Each property listing includes a "Book now" button. Click on "Book now" and the Landlord of the Property will get an email and contact with you.
-                </h5>
-            </div>
-        </div>
-        <div class="my-6">
-            <div
-                class="rounded-t-2xl bg-teal-600/80 w-full cursor-pointer select-none border-2 border-teal-600/30 px-4 py-4 text-gray-100 transition duration-300 hover:border-teal-600/80 hover:text-white">
-                <h4 class="text-lg font-medium">What should I do if I encounter a problem?</h4>
-            </div>
-            <div
-                class="inline-flex w-full rounded-b-2xl border-x-2 border-b-2 border-dashed border-teal-600/30 bg-teal-100/50 px-4 py-4 text-teal-800">
-                <h5>
-                    If you encounter any issues, please reach out to our support team using the email  <span class="text-blue-500">support@propops.com</span>.
-                </h5>
-            </div>
-        </div>
-    </section>
-    
-
-    
-    
-    <footer class="bg-gray-200" style="font-family: 'Martian Mono', monospace; font-optical-sizing: auto;">
-      <div class="py-8 px-4 sm:px-12">
-          <div class="flex flex-wrap items-center justify-between">
-              <div class="w-full md:w-auto text-center md:text-left mb-6 md:mb-0">
-                  <a href="/" class="text-gray-700 hover:text-gray-900 font-extrabold text-2xl">
-                      <img src="https://i.postimg.cc/tgGNm4r3/propops-logo.png" alt="logo" class='w-24' />
-                  </a>
-              </div>
-              <!-- Social Media Links -->
-              <div class="flex items-center justify-center space-x-4">
-                  <a href="https://www.facebook.com/AlMamuunn" target="_blank" class="text-blue-700 hover:text-blue-900">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82V14.746H9.692V11.29h3.128V8.684c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.462.099 2.794.143v3.24h-1.917c-1.506 0-1.798.716-1.798 1.765v2.31h3.595l-.468 3.457h-3.127V24h6.127c.728 0 1.325-.597 1.325-1.324V1.325C24 .597 23.403 0 22.675 0z"/>
-                      </svg>
-                  </a>
-                  <a href="https://wa.me/" target="_blank" class="text-green-500 hover:text-green-700">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M20.52 3.47A11.93 11.93 0 0 0 12 0C5.372 0 0 5.372 0 12c0 2.123.553 4.194 1.6 6.02L.052 23.236a.905.905 0 0 0 1.039 1.039l5.216-1.549A11.937 11.937 0 0 0 12 24c6.627 0 12-5.373 12-12 0-3.206-1.252-6.215-3.48-8.53zM12 22.09c-2.038 0-4.051-.548-5.795-1.588a.906.906 0 0 0-.734-.086l-3.955 1.176 1.177-3.956a.906.906 0 0 0-.086-.733A10.202 10.202 0 0 1 1.91 12C1.91 6.478 6.478 1.91 12 1.91c5.522 0 10.09 4.568 10.09 10.09 0 5.521-4.568 10.09-10.09 10.09z"/>
-                          <path d="M16.066 13.58c-.084-.042-.49-.242-.921-.433-.24-.103-.539-.223-.843-.087-.199.088-.319.385-.444.565-.125.181-.324.208-.598.069a8.314 8.314 0 0 1-2.217-1.53c-.399-.399-.722-.847-.97-1.254-.145-.244-.011-.374.108-.51.12-.138.18-.23.27-.366.089-.136.06-.242-.015-.36-.044-.071-.398-.956-.545-1.314-.144-.35-.29-.305-.444-.311-.115-.005-.247-.006-.38-.006-.137 0-.36.051-.546.242-.187.191-.712.696-.712 1.696s.729 1.963.83 2.103c.101.14 1.435 2.187 3.482 3.066.487.209.866.333 1.162.426.488.155.93.134 1.283.082.391-.057 1.204-.492 1.373-.968.169-.476.169-.883.118-.968-.05-.084-.15-.134-.234-.177z"/>
-                      </svg>
-                  </a>
-              </div>
-          </div>
-          <hr class="my-6 border-gray-300" />
-          <p class='text-center text-gray-700 text-base'>Copyright © 2024<a href='/'
-        target='_blank' class="hover:underline mx-1">PropOps </a>All Rights Reserved.</p>
+        </ul>
       </div>
-  </footer>
-  
-  
+    </header>
 
-</body>
+    <header class="bg-gray-100 py-12">
+      <div class="container mx-auto px-6 text-center">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">
+          How Can We Help You?
+        </h1>
+        <p class="text-lg text-gray-600">
+          Our support team is here to assist you with any questions or concerns
+          about booking or adding properties.
+        </p>
+      </div>
+    </header>
+
+    <section id="faq" class="container relative mx-auto py-12 px-2">
+      <h3
+        class="mb-14 text-teal-900 text-center text-3xl font-semibold decoration-teal-200/80 lg:text-left xl:text-4xl"
+      >
+        Frequently Asked Questions
+      </h3>
+
+      <div class="my-6">
+        <div
+          class="rounded-t-2xl bg-teal-600/80 w-full cursor-pointer select-none border-2 border-teal-600/30 px-4 py-4 text-gray-100 transition duration-300 hover:border-teal-600/80 hover:text-white"
+        >
+          <h4 class="text-lg font-medium">
+            How do I create an account on the website?
+          </h4>
+        </div>
+        <div
+          class="inline-flex w-full rounded-b-2xl border-x-2 border-b-2 border-dashed border-teal-600/30 bg-teal-100/50 px-4 py-4 text-teal-800"
+        >
+          <h5>
+            To create an account, click on the "Sign Up" button located at the
+            top right corner of the homepage.
+            <br />
+            Fill out the required information, including your name, email
+            address, password and select what type of user you are(Example:
+            General user/ Landlord).
+            <br />
+            Click "Sign Up Now" to complete the registration process.
+          </h5>
+        </div>
+      </div>
+
+      <div class="my-6">
+        <div
+          class="rounded-t-2xl bg-teal-600/80 w-full cursor-pointer select-none border-2 border-teal-600/30 px-4 py-4 text-gray-100 transition duration-300 hover:border-teal-600/80 hover:text-white"
+        >
+          <h4 class="text-lg font-medium">How do I list my property?</h4>
+        </div>
+        <div
+          class="inline-flex w-full rounded-b-2xl border-x-2 border-b-2 border-dashed border-teal-600/30 bg-teal-100/50 px-4 py-4 text-teal-800"
+        >
+          <h5>
+            To add your property, sign up as a Landlord and navigate to the
+            "Explore Property" section. Fill in the necessary details by
+            clicking "Add Property" button, and your property will be live on
+            our platform.
+          </h5>
+        </div>
+      </div>
+
+      <div class="my-6">
+        <div
+          class="rounded-t-2xl bg-teal-600/80 w-full cursor-pointer select-none border-2 border-teal-600/30 px-4 py-4 text-gray-100 transition duration-300 hover:border-teal-600/80 hover:text-white"
+        >
+          <h4 class="text-lg font-medium">How long does Booking take?</h4>
+        </div>
+        <div
+          class="inline-flex w-full rounded-b-2xl border-x-2 border-b-2 border-dashed border-teal-600/30 bg-teal-100/50 px-4 py-4 text-teal-800"
+        >
+          <h5>
+            The booking process is quick and easy. Simply select the property
+            you wish to book, and then click on "Book Now".
+          </h5>
+        </div>
+      </div>
+      <div class="my-6">
+        <div
+          class="rounded-t-2xl bg-teal-600/80 w-full cursor-pointer select-none border-2 border-teal-600/30 px-4 py-4 text-gray-100 transition duration-300 hover:border-teal-600/80 hover:text-white"
+        >
+          <h4 class="text-lg font-medium">
+            How can I contact the property owner?
+          </h4>
+        </div>
+        <div
+          class="inline-flex w-full rounded-b-2xl border-x-2 border-b-2 border-dashed border-teal-600/30 bg-teal-100/50 px-4 py-4 text-teal-800"
+        >
+          <h5>
+            Each property listing includes a "Book now" button. Click on "Book
+            now" and the Landlord of the Property will get an email and contact
+            with you.
+          </h5>
+        </div>
+      </div>
+      <div class="my-6">
+        <div
+          class="rounded-t-2xl bg-teal-600/80 w-full cursor-pointer select-none border-2 border-teal-600/30 px-4 py-4 text-gray-100 transition duration-300 hover:border-teal-600/80 hover:text-white"
+        >
+          <h4 class="text-lg font-medium">
+            What should I do if I encounter a problem?
+          </h4>
+        </div>
+        <div
+          class="inline-flex w-full rounded-b-2xl border-x-2 border-b-2 border-dashed border-teal-600/30 bg-teal-100/50 px-4 py-4 text-teal-800"
+        >
+          <h5>
+            If you encounter any issues, please reach out to our support team
+            using the email
+            <span class="text-blue-500">support@propops.com</span>.
+          </h5>
+        </div>
+      </div>
+    </section>
+
+    <footer
+    class="bg-gray-200"
+    style="font-family: 'Martian Mono', monospace; font-optical-sizing: auto"
+  >
+    <div class="container mx-auto py-8 px-4 sm:px-12">
+      <!-- Logo and Introduction -->
+      <div class="flex flex-wrap items-center justify-between">
+        <div class="w-full md:w-auto text-center md:text-left mb-6 md:mb-0">
+          <a
+            href="/"
+            class="text-gray-700 hover:text-gray-900 font-extrabold text-2xl"
+          >
+            <img
+              src="https://i.postimg.cc/tgGNm4r3/propops-logo.png"
+              alt="logo"
+              class="w-24 mx-auto md:mx-0"
+            />
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Footer Content -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
+        <!-- About Section -->
+        <div>
+          <h3 class="text-xl font-bold text-blue-700 mb-4">About Us</h3>
+          <p class="text-sm text-gray-700">
+            Discover your ideal home with our easy-to-use apartment renting
+            platform. <br />Connecting tenants and landlords for a hassle-free
+            experience.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-xl font-bold text-blue-700 mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="{% url 'property' %}" class="hover:text-blue-500"
+                >Browse Properties</a
+              >
+            </li>
+            <li>
+              <a href="{% url 'about_us' %}" class="hover:text-blue-500"
+                >About Us</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div>
+          <h3 class="text-xl font-bold text-blue-700 mb-4">Contact Us</h3>
+          <ul class="text-sm space-y-2 text-gray-700">
+            <li>
+              Email:
+              <a
+                href="mailto:info@apartmentrenting.com"
+                class="hover:text-blue-500"
+                >info@propops.com</a
+              >
+            </li>
+            <li>
+              Phone:
+              <a href="tel:+8801714567890" class="hover:text-blue-500"
+                >+8801714567890</a
+              >
+            </li>
+            <li>Address: 789 Apartment Street, Dhaka, Bangladesh</li>
+          </ul>
+        </div>
+      </div>
+<!-- Social Links Section -->
+<div class="mt-8 border-t border-gray-300 pt-4 text-center">
+<div class="flex justify-center space-x-6 mb-4">
+    <a href="https://www.facebook.com/AlMamuunn" target="_blank" class="text-gray-700 hover:text-blue-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.792c0-.978.181-1.208 1.372-1.208h2.628v-5h-3.643c-3.732 0-5.357 1.686-5.357 4.837v3.163z" />
+        </svg>
+    </a>
+    <a href="https://wa.me/880145196403" target="_blank" class="text-gray-700 hover:text-green-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12.004 0c-6.625 0-12 5.373-12 12 0 2.119.568 4.153 1.646 5.96l-1.808 5.287 5.424-1.768c1.71.973 3.669 1.519 5.738 1.519 6.623 0 12-5.375 12-12s-5.377-12-12-12zm6.651 17.751c-.554.884-1.524 1.419-2.521 1.419-3.707 0-7.269-3.014-8.569-5.791-.361-.749-.676-1.568-.789-2.137-.046-.245-.085-.496-.085-.704 0-.602.21-1.147.54-1.539l.35-.396c.097-.11.236-.16.389-.129.437.092.964.283 1.495.596.394.234.761.525 1.098.884.18.195.423.31.686.319.354.014.697.014 1.065-.001.153-.007.296-.064.403-.165.188-.169.337-.404.417-.709.082-.31.049-.667-.091-.977-.112-.241-.267-.481-.47-.723-.268-.314-.561-.621-.911-.945-.326-.297-.65-.594-.952-.892-.243-.242-.356-.588-.298-.93.071-.41.354-.795.792-1.117.32-.243.67-.382 1.03-.47.099-.024.199-.048.301-.073.037-.009.072-.023.111-.026.032-.003.065-.013.098-.017.035-.005.071-.003.106-.009 2.344-.431 4.79 1.276 6.232 3.319.597.842 1.113 1.732 1.563 2.638.306.619.515 1.223.594 1.857.122.934-.039 1.869-.57 2.726z" />
+        </svg>
+    </a>
+    <!-- <a href="https://x.com" target="_blank" class="text-gray-700 hover:text-blue-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.953 4.57c-.885.391-1.833.656-2.825.775 1.013-.611 1.793-1.574 2.163-2.723-.949.555-2.005.959-3.127 1.184-.896-.959-2.17-1.555-3.594-1.555-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.122-4.088-.205-7.72-2.163-10.141-5.138-.423.722-.666 1.561-.666 2.459 0 1.692.861 3.186 2.169 4.065-.803-.026-1.56-.247-2.22-.616v.062c0 2.364 1.676 4.337 3.897 4.782-.408.111-.839.171-1.285.171-.314 0-.618-.031-.917-.089.618 1.931 2.416 3.336 4.548 3.374-1.67 1.309-3.778 2.091-6.065 2.091-.394 0-.779-.023-1.161-.067 2.162 1.384 4.72 2.193 7.476 2.193 8.97 0 13.864-7.434 13.864-13.874 0-.21-.004-.422-.014-.63.951-.688 1.777-1.552 2.436-2.533z" />
+        </svg>
+    </a> -->
+</div>
+
+      <!-- Bottom Section -->
+      <div class="mt-8 border-t border-gray-300 pt-4 text-center">
+        <p class="text-sm text-gray-700">
+          Copyright © 2024
+          <a href="/" target="_blank" class="hover:underline mx-1">PropOps</a
+          >. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+  </body>
 </html>
