@@ -3,26 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Property</title>
+    <title>
+      {% if form.instance.pk %}Update Property{% else %}Add Property{% endif %}
+    </title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
-   
-    <div class="bg-gradient-to-r from-green-400 to-teal-500 shadow-2xl rounded-3xl p-8 w-full max-w-lg">
-      <h1 class="text-3xl font-bold text-center mb-8 text-white">Add Property</h1>
+  <body class="min-w-7xl min-h-screen flex items-center justify-center">
+    <div
+      class="bg-gradient-to-r from-green-400 to-teal-500 shadow-2xl rounded-3xl p-8 w-full max-w-lg"
+    >
+      <h1 class="text-3xl font-bold text-center mb-8 text-white">
+        {% if form.instance.pk %}Update Property{% else %}Add Property{% endif %}
+      </h1>
       <form method="POST" enctype="multipart/form-data" class="space-y-6">
         {% csrf_token %}
-      
-        <div class="space-y-4 text-gray-800">
-          {{ form.as_p }}
-        </div>
-        
+
+        <div class="space-y-4 text-gray-800">{{ form.as_p }}</div>
+
         <button
           type="submit"
           value="submit"
-          class="w-full py-3 px-4 bg-gradient-to-r from-green-400 to-teal-500 text-white font-semibold text-lg rounded-xl shadow-lg hover:from-green-500 hover:to-teal-600 transition duration-300"
+          class="w-full py-3 px-4 bg-gradient-to-r from-teal-400 to-teal-500 text-white font-semibold text-lg rounded-xl shadow-lg hover:from-green-500 hover:to-teal-600 transition duration-300"
         >
-          Submit
+        {% if form.instance.pk %}Update Property{% else %}Add Property{% endif %}
         </button>
       </form>
     </div>
