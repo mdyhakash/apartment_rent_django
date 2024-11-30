@@ -29,6 +29,9 @@ def register(request):
         if user_type == 'landlord' and username not in allowed_landlord_usernames:
             messages.error(request, 'Only specific users can register as a landlord.')
             return redirect('register')
+        if user_type != 'landlord' and username  in allowed_landlord_usernames:
+            messages.error(request, 'The username you’ve selected is restricted. Please use a different one.')
+            return redirect('register')
 
         if User.objects.filter(username=username).exists():
             messages.error(request, 'Username already taken.')
@@ -38,26 +41,31 @@ def register(request):
             return redirect('register')
 
        
-        user = User.objects.create_user(username=username, email=email, password=password)
-        user.save()
+        try:
+            
+            user = User.objects.create_user(username=username, email=email, password=password)
+            user.save()
 
-       
-        User_Profile.objects.create(
-            username=username,
-            email=email,
-            password=user.password,
-            join_date=date.today(),
-            user_type=user_type
-        )
+            
+            User_Profile.objects.create(
+                username=username,
+                email=email,
+                password=user.password, 
+                join_date=date.today(),
+                user_type=user_type
+            )
 
-        
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            auth_login(request, user)
-            messages.success(request, 'You have successfully signed up!')
+            
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                auth_login(request, user)
+                messages.success(request, 'You have successfully signed up!')
+                return redirect('home')  
+
+        except Exception as e:
+           
+            messages.error(request, f'An error occurred: {str(e)}')
             return redirect('register')
-
-    return render(request, 'register.html')
 
 
 def login(request):
