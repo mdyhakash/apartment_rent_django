@@ -1,54 +1,59 @@
-{% extends 'base.html' %}
-
-{% block title %}
-Book Now
-{% endblock %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Booking</title>
-</head>
-<body>
-    {% block content %}
-    <div class="flex items-center justify-center p-12">
-
-        {% if user.profile.user_type == 'landlord' %}
-            <div class="bg-gray-100 rounded-lg shadow-md p-4">
-                <h3 class="text-xl font-semibold mb-2">Sorry, landlords cannot book properties.</h3>
-                <p class="text-lg">You are a landlord, and booking a property is not allowed for you.</p>
-                <a href="{% url 'property' %}" class="text-blue-500 underline mt-4">Go back to Property List</a>
-            </div>
-        {% else %}
-            <div class="bg-gray-100 rounded-lg shadow-md p-4">
-                <!-- Image -->
-                <div class="mb-4">
-                    <img src="{{ property.image_1.url }}" alt="property Image" class="w-64 h-auto rounded-lg shadow-2xl">
-                </div>
-
-                <!-- Information -->
-                <div>
-                    <h3 class="text-xl font-semibold mb-2">Booked Apartment</h3>
-                    <div class="flex flex-col">
-                        <p><span class="font-semibold">Property Name:</span> {{ property.name }}</p>
-                        <p><span class="font-semibold">Price:</span> {{ property.price }} lac</p>
-                        <p><span class="font-semibold">Area:</span> {{ property.sqft }} sqft</p>
-                        <p><span class="font-semibold">Address:</span> {{ property.address }}</p>
-                    </div>
-                </div>
-            </div>
-
-                    <div>
-                        <a href="{% url 'booking_success' property.id %}" class="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">CONFIRM BOOKING</a>
-                    
-                    </div>
-                </form>
-            </div>
-        {% endif %}
+{% extends 'base.html' %} {% block title %} Book Now {% endblock %} {% block
+content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-50 p-12">
+  {% if user.profile.user_type == 'landlord' %}
+  <div
+    class="bg-red-50 border border-red-500 text-red-700 rounded-lg shadow-md p-6 w-full max-w-lg mx-auto"
+  >
+    <h3 class="text-2xl font-semibold mb-2">
+      Sorry, landlords cannot book properties.
+    </h3>
+    <p class="text-lg mb-4">
+      As a landlord, booking a property is not permitted. Please visit the
+      property listing page to manage your properties.
+    </p>
+    <a href="{% url 'property' %}" class="text-blue-600 hover:underline"
+      >Go back to Property List</a
+    >
+  </div>
+  {% else %}
+  <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg mx-auto">
+    <!-- Property Image -->
+    <div class="mb-6">
+      <img
+        src="{{ property.image_1.url }}"
+        alt="Property Image"
+        class="w-full h-64 object-cover rounded-lg shadow-lg"
+      />
     </div>
-    {% endblock %}
-</body>
-</html>
+
+    <!-- Property Information -->
+    <div class="space-y-4">
+      <h3 class="text-2xl font-semibold text-gray-800">Booking Information</h3>
+      <div class="text-gray-700 space-y-2">
+        <p>
+          <span class="font-semibold">Property Name:</span> {{ property.name }}
+        </p>
+        <p>
+          <span class="font-semibold">Price:</span> {{ property.price }} lac
+        </p>
+        <p><span class="font-semibold">Area:</span> {{ property.sqft }} sqft</p>
+        <p>
+          <span class="font-semibold">Address:</span> {{ property.address }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Booking Button -->
+    <div class="mt-6">
+      <a
+        href="{% url 'booking_success' property.id %}"
+        class="w-full block rounded-lg bg-blue-600 py-3 text-center text-white font-semibold hover:bg-blue-500 transition duration-300"
+      >
+        Confirm Booking
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -146,8 +146,9 @@ def update_property(request, id):
         form = PropertyForm(request.POST, request.FILES, instance=property)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Property updated successfully.')
             return redirect('property')
-    return render(request, template_name='add_property.html', context={'form': form})
+    return render(request, template_name='add_property.html', context={'form': form,})
 
 @login_required(login_url='register')
 def delete_property(request, id):
