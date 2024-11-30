@@ -33,5 +33,8 @@ urlpatterns = [
     path('support/', prop_views.support , name='support'),
     
     path('not_available/', prop_views.not_available, name='not_available'),
+    
+    #comment and rating
+    path('comment/<str:property_id>', prop_views.add_comment, name='comment'),
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

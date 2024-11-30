@@ -7,7 +7,7 @@ from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required
 from django.utils.timezone import now
 from datetime import date
-
+from django.http import JsonResponse
 
 def home(request):
     user_profile =User_Profile.objects.all()
@@ -246,3 +246,58 @@ def about_us(request):
 def support(request):   
     return render(request, template_name= 'support.html')
 
+# View for adding a comment
+@login_required(login_url='login')
+def add_comment(request, property_id):
+    property = get_object_or_404(Property, id=property_id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.property = property
+            comment.user = User_Profile.objects.get(username=request.user.username)
+            comment.save()
+            messages.success(request, 'Your comment has been added.')
+            return redirect('propertydetails', id= property.id)  
+    
+        else:
+            form = CommentForm()
+    
+
+    comments = property.comment_set.all().order_by('-date_created')
+    return render(request, 'propertydetails.html', {'property': property, 'comments': comments, 'form': form})
+
+
+
+# View for listing comments of a property
+
+
+# View for adding a rating
+@login_required
+def add_rating(request, property_id):
+    property_obj = get_object_or_404(Property, id=property_id)
+    if request.method == 'POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            # Prevent duplicate ratings for the same property by the same user
+            existing_rating = Rating.objects.filter(user=request.user.profile, property=property_obj).first()
+            if existing_rating:
+                existing_rating.rating = form.cleaned_data['rating']
+                existing_rating.save()
+            else:
+                rating = form.save(commit=False)
+                rating.user = request.user.profile
+                rating.property = property_obj
+                rating.save()
+            return redirect('property_detail', property_id=property_id)
+    else:
+        form = RatingForm()
+    return render(request, 'rental/add_rating.html', {'form': form, 'property': property_obj})
+
+# View for fetching average rating of a property
+def property_rating(request, property_id):
+    property_obj = get_object_or_404(Property, id=property_id)
+    ratings = Rating.objects.filter(property=property_obj)
+    average_rating = ratings.aggregate(Avg('rating'))['rating__avg'] or 0
+    return JsonResponse({'average_rating': average_rating})

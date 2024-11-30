@@ -24,3 +24,25 @@ class UserForm(ModelForm):
     class Meta:
         model=User_Profile
         fields = ['email', 'phone', 'address', 'profile_image']
+        
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comment']
+        widgets = {
+            'comment': forms.Textarea(attrs={
+                'class': 'w-full py-2 px-4 border border-gray-300 rounded-lg',
+                'rows': 4,
+                'placeholder': 'Write your comment here...',
+            }),
+        }
+
+class RatingForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ['rating']
+        widgets = {
+            'rating': forms.Select(attrs={
+                'class': 'w-full py-2 px-4 border border-gray-300 rounded-lg',
+            }),
+        }
