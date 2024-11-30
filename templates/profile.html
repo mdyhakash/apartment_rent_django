@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block title %} User Profile {% endblock %}
+{% extends 'base.html' %} 
+{% block title %} User Profile {% endblock %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,76 +7,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body class="bg-gradient-to-r from-blue-50 via-blue-100 to-blue-200 font-sans antialiased">
     {% block content %}
-
-    <div class="max-w-6xl mx-auto mt-12">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-   
-        <div
-          class="flex justify-center items-center bg-white shadow-xl rounded-lg overflow-hidden"
-        >
-          <div class="relative w-64 h-64 rounded-full overflow-hidden">
-           
-            <img
-              src="{{ user_profile.profile_image.url }}"
-              alt="Profile Image"
-              class="w-full h-full object-cover"
-            />
-            
-          </div>
-        </div>
-
-        
-        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-          <div class="p-4">
-            <form method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              <div class="mb-4">
-                <label
-                  for="phone"
-                  class="block text-gray-700 text-sm font-bold mb-2">Username: {{ user_profile.username }}
-                </label>               
-              </div>
-              <div class="mb-4">
-                <label
-                  for="phone"
-                  class="block text-gray-700 text-sm font-bold mb-2">Email Address: {{ user_profile.email }}
-                </label>               
-              </div>
-              <div class="mb-4">
-                <label
-                  for="phone"
-                  class="block text-gray-700 text-sm font-bold mb-2">Phone Number: {{ user_profile.phone }}
-                </label>               
-              </div>
-              <div class="mb-4">
-                <label
-                  for="address"
-                  class="block text-gray-700 text-sm font-bold mb-2"
-                  >Address:
-                </label>
-                <textarea
-                  name="address"
-                  id="address"
-                  rows="4"
-                  class="resize-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                >
-                {{ user_profile.address }}</textarea>
-
-              </div>
-              <a
-                href="{% url 'update_user' user_profile.id %}"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >Update Profile</a
-              >
-            </form>
-          </div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Profile Header Section -->
+      <div class="flex justify-center items-center mb-12">
+        <div class="relative w-40 h-40 rounded-full overflow-hidden border-4 border-indigo-500 shadow-lg">
+          <img
+            src="{{ user_profile.profile_image.url }}"
+            alt="Profile Image"
+            class="w-full h-full object-cover"
+          />
         </div>
       </div>
-    </div>
 
+      <!-- Profile Details Card with Gradient -->
+      <div class="bg-gradient-to-r from-green-100 via-green-200 to-green-300 shadow-2xl rounded-lg p-8 mb-6">
+        <h3 class="text-3xl font-bold text-gray-800 mb-6 text-center">Profile Details</h3>
+        <div class="space-y-4 text-lg text-gray-700">
+          <div>
+            <strong class="text-gray-800">Username:</strong> {{ user_profile.username }}
+          </div>
+          <div>
+            <strong class="text-gray-800">Email:</strong> {{ user_profile.email }}
+          </div>
+          <div>
+            <strong class="text-gray-800">Phone Number:</strong> {{ user_profile.phone }}
+          </div>
+          <div>
+            <strong class="text-gray-800">Address:</strong> {{ user_profile.address }}
+          </div>
+        </div>
+
+        <!-- Update Profile Button -->
+        <div class="mt-6 text-center">
+          <a
+            href="{% url 'update_user' user_profile.id %}"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:shadow-outline"
+          >
+            Update Profile
+          </a>
+        </div>
+      </div>
+
+      <!-- Additional Info Section with Color -->
+      <div class="bg-blue-600 text-white text-center py-4 mt-12 rounded-lg">
+        <p class="text-lg">Feel free to update your profile and provide additional details. Let others know more about your interests and work.</p>
+      </div>
+    </div>
     {% endblock %}
   </body>
 </html>

@@ -92,11 +92,13 @@ def property(request):
         sort_by = f"-{sort_by}"
 
     property = Property.objects.all().order_by(sort_by)
+    is_landlord = check_if_landlord(request.user)
 
     context = {
         'property': property,
         'sort_by': sort_by.lstrip('-'),
         'order': order,
+        'is_landlord': is_landlord,
     }
     return render(request, 'property.html', context)
 
@@ -119,7 +121,7 @@ def add_property(request):
     
     if not check_if_landlord(request.user):
         messages.error(request, 'Only landlords can add properties.')
-        return redirect('home')
+        return redirect('property')
     
     form = PropertyForm()
     if request.method == 'POST':
@@ -195,7 +197,7 @@ def delete_user(request, id):
 def book_property(request, id):
       if  check_if_landlord(request.user):
         messages.error(request, 'Only user can book properties.')
-        return redirect('home')
+        return redirect('property')
   
       property = get_object_or_404(Property, id=id)
       user_profile = User_Profile.objects.get(username=request.user.username)

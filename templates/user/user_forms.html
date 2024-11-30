@@ -3,15 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User</title>
+    <title>Update Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-      
-    <form  method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" value="submit">Submit</button>
-    </form>
+<body class="bg-gray-100 font-sans">
+
+    <div class="max-w-4xl mx-auto p-8">
+        <!-- Header -->
+        <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Update Your Profile</h2>
+
+        <!-- Profile Update Form -->
+        <form method="POST" enctype="multipart/form-data" class="bg-gradient-to-r from-blue-400 via-blue-600 to-indigo-700 p-8 rounded-xl shadow-xl text-white">
+            {% csrf_token %}
+            <div class="space-y-6">
+
+                <!-- Email Field -->
+                <div class="flex flex-col">
+                    <label for="email" class="text-sm font-medium">Email</label>
+                    <input type="email" name="email" id="email" class="w-full p-4 border border-gray-300 rounded-lg bg-gray-50 text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" value="{{ form.email.value }}">
+                </div>
+
+                <!-- Phone Field -->
+                <div class="flex flex-col">
+                    <label for="phone" class="text-sm font-medium">Phone Number</label>
+                    <input type="text" name="phone" id="phone" class="w-full p-4 border border-gray-300 rounded-lg bg-gray-50 text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" value="{{ form.phone.value }}">
+                </div>
+
+                <!-- Address Field -->
+                <div class="flex flex-col">
+                    <label for="address" class="text-sm font-medium">Address</label>
+                    <input type="text" name="address" id="address" class="w-full p-4 border border-gray-300 rounded-lg bg-gray-50 text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" value="{{ form.address.value }}">
+                </div>
+
+                <!-- Profile Image Field -->
+                <div class="flex flex-col">
+                    <label for="profile_image" class="text-sm font-medium">Profile Image</label>
+                    <input type="file" name="profile_image" id="profile_image" class="w-full p-4 border border-gray-300 rounded-lg bg-gray-50 text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+
+                <!-- Textarea for additional input (optional) -->
+                <div class="flex flex-col">
+                    <label for="about" class="text-sm font-medium">About You</label>
+                    <textarea id="about" name="about" class="w-full p-4 border border-gray-300 rounded-lg bg-gray-50 text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 resize-none" rows="4" placeholder="Tell us something about yourself..."></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex justify-center">
+                    <button type="submit" class="bg-white hover:bg-blue-800 hover:text-white  text-blue-800 font-semibold py-2 px-6 rounded-lg transition duration-300 transform hover:scale-105 focus:outline-none">
+                        Update Profile
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 
 </body>
 </html>
