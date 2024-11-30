@@ -41,31 +41,26 @@ def register(request):
             return redirect('register')
 
        
-        try:
-            
-            user = User.objects.create_user(username=username, email=email, password=password)
-            user.save()
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.save()
 
-            
-            User_Profile.objects.create(
-                username=username,
-                email=email,
-                password=user.password, 
-                join_date=date.today(),
-                user_type=user_type
-            )
+       
+        User_Profile.objects.create(
+            username=username,
+            email=email,
+            password=user.password,
+            join_date=date.today(),
+            user_type=user_type
+        )
 
-            
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                auth_login(request, user)
-                messages.success(request, 'You have successfully signed up!')
-                return redirect('home')  
-
-        except Exception as e:
-           
-            messages.error(request, f'An error occurred: {str(e)}')
+        
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            messages.success(request, 'You have successfully signed up!')
             return redirect('register')
+
+    return render(request, 'register.html')
 
 
 def login(request):
