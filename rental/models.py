@@ -70,5 +70,41 @@ class Member(models.Model):
     image2=models.ImageField(upload_to='members/', null=True, blank=True, default='')
     image3=models.ImageField(upload_to='members/', null=True, blank=True, default='')
     image4=models.ImageField(upload_to='members/', null=True, blank=True, default='')
+
+class Comment(models.Model):
+    user = models.ForeignKey(User_Profile, on_delete=models.CASCADE)
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    comment = models.TextField()
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Comment by {self.user.username} on {self.property.property_type}"
+
+
+class Rating(models.Model):
+    user = models.ForeignKey(User_Profile, on_delete=models.CASCADE)
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField(choices=[(i, str(i)) for i in range(1, 6)])  # Rating between 1 and 5
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Rating by {self.user.username} for {self.property.property_type}"
+
+
+class Payment(models.Model):
+    booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
+    payment_amount = models.FloatField()
+    payment_status_choices = [
+        ('paid', 'Paid'),
+        ('pending', 'Pending'),
+        ('failed', 'Failed'),
+    ]
+    payment_status = models.CharField(
+        max_length=10,
+        choices=payment_status_choices,
+        default='pending'
+    )
+    payment_date = models.DateTimeField(auto_now_add=True)
+
     
 
