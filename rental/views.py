@@ -58,7 +58,7 @@ def register(request):
         if user is not None:
             auth_login(request, user)
             messages.success(request, 'You have successfully signed up!')
-            return redirect('register')
+            return redirect('login')
 
     return render(request, 'register.html')
 

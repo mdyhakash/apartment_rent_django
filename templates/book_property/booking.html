@@ -1,47 +1,75 @@
-{% extends 'base.html' %}
-{% block title %}
-Book Now
-{% endblock %}
+{% extends 'base.html' %} {% block title %} Book Now {% endblock %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Booking</title>
-</head>
-<body>
+  </head>
+  <body class="bg-gray-50">
     {% block content %}
-    <div class="flex items-center justify-center p-12">
-        {% if user.profile.user_type == 'landlord' %}
-            <div class="bg-gray-100 rounded-lg shadow-md p-4">
-                <h3 class="text-xl font-semibold mb-2">Sorry, landlords cannot book properties.</h3>
-                <p class="text-lg">You are a landlord, and booking a property is not allowed for you.</p>
-                <a href="{% url 'property' %}" class="text-blue-500 underline mt-4">Go back to Property List</a>
-            </div>
-        {% else %}
-            <div class="bg-gray-100 rounded-lg shadow-md p-4">
-                <!-- Image -->
-                <div class="mb-4">
-                    <img src="{{ property.image_1.url }}" alt="property Image" class="w-64 h-auto rounded-lg shadow-2xl">
-                </div>
-                <div>
-                  <h3 class="text-xl font-semibold mb-2">Booked Apartment</h3>
-                  <div class="flex flex-col">
-                      <p><span class="font-semibold">Property Name:</span> {{ property.name }}</p>
-                      <p><span class="font-semibold">Price:</span> {{ property.price }} lac</p>
-                      <p><span class="font-semibold">Area:</span> {{ property.sqft }} sqft</p>
-                      <p><span class="font-semibold">Address:</span> {{ property.address }}</p>
-                  </div>
-              </div>
-          </div>
-          <div>
-            <a href="{% url 'booking_success' property.id %}" class="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">CONFIRM BOOKING</a>
-        
+    <div
+      class="flex items-center justify-center min-h-screen px-6 py-12 bg-gradient-to-br from-blue-100 to-gray-50"
+    >
+      <!-- Conditionally Display Content Based on User Type -->
+      {% if user.profile.user_type == 'landlord' %}
+      <div class="bg-white rounded-lg shadow-lg p-6 max-w-md text-center">
+        <h3 class="text-2xl font-bold text-red-500 mb-4">Booking Restricted</h3>
+        <p class="text-lg text-gray-600">
+          Sorry, landlords cannot book properties. Please browse the property
+          list instead.
+        </p>
+        <a
+          href="{% url 'property' %}"
+          class="inline-block mt-6 px-6 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600"
+        >
+          Go Back to Property List
+        </a>
+      </div>
+      {% else %}
+      <div class="bg-white rounded-lg shadow-lg p-8 max-w-lg space-y-6">
+        <!-- Property Image -->
+        <div class="flex justify-center">
+          <img
+            src="{{ property.image_1.url }}"
+            alt="Property Image"
+            class="w-full h-auto max-w-md rounded-lg shadow-lg"
+          />
         </div>
-    </form>
-</div>
-{% endif %}
-{% endblock %}
-</body>
+        <!-- Property Details -->
+        <div>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">
+            Booked Apartment
+          </h3>
+          <div class="text-gray-700 space-y-2">
+            <p>
+              <span class="font-medium">Property Name:</span> {{ property.name
+              }}
+            </p>
+            <p>
+              <span class="font-medium">Price:</span> {{ property.price }} lac
+            </p>
+            <p>
+              <span class="font-medium">Area:</span> {{ property.sqft }} sqft
+            </p>
+            <p>
+              <span class="font-medium">Address:</span> {{ property.address }}
+            </p>
+          </div>
+        </div>
+        <!-- Booking Button -->
+        <div class="text-center">
+          <a
+            href="{% url 'booking_success' property.id %}"
+            class="w-full inline-block rounded-md bg-gradient-to-r from-blue-500 to-purple-500 py-3 px-8 text-base font-semibold text-white hover:shadow-lg"
+          >
+            CONFIRM BOOKING
+          </a>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    {% endblock %}
+  </body>
 </html>
